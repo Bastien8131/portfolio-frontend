@@ -1,0 +1,56 @@
+name: Deploy to Production
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+env:
+  DOMAIN: ${{ secrets.DOMAIN }}
+  SUBDOMAIN: ${{ secrets.SUBDOMAIN }}
+  SERVER_USER: ${{ secrets.SERVER_USER }}
+  DEPLOY_PATH: /var/www/vhosts
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup SSH
+        uses: webfactory/ssh-agent@v0.8.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Add known hosts
+        run: |
+          ssh-keyscan -H ${{ env.DOMAIN }} >> ~/.ssh/known_hosts
+          
+      - name: Validate deployment path
+        run: |
+          FULL_PATH="${{ env.DEPLOY_PATH }}/${{ env.DOMAIN }}/${{ env.SUBDOMAIN }}.${{ env.DOMAIN }}"
+          echo "Deploying to: $FULL_PATH"
+          
+      - name: Check server connection
+        run: ssh ${{ env.SERVER_USER }}@${{ env.DOMAIN }} "echo 'Connection successful'"
+
+      - name: Deploy to server
+        run: |
+          rsync -avz --delete \
+          --exclude '.git*' \
+          --exclude 'node_modules' \
+          --exclude '.env' \
+          --exclude '*.log' \
+          ./ \
+          ${{ env.SERVER_USER }}@${{ env.DOMAIN }}:${{ env.DEPLOY_PATH }}/${{ env.DOMAIN }}/${{ env.SUBDOMAIN }}.${{ env.DOMAIN }}/
+
+      - name: Verify deployment
+        run: |
+          ssh ${{ env.SERVER_USER }}@${{ env.DOMAIN }} "test -d ${{ env.DEPLOY_PATH }}/${{ env.DOMAIN }}/${{ env.SUBDOMAIN }}.${{ env.DOMAIN }}"
+          
+      - name: Set permissions
+        run: |
+          ssh ${{ env.SERVER_USER }}@${{ env.DOMAIN }} "chmod -R 755 ${{ env.DEPLOY_PATH }}/${{ env.DOMAIN }}/${{ env.SUBDOMAIN }}.${{ env.DOMAIN }}"
