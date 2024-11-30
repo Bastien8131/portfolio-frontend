@@ -53,12 +53,7 @@ jobs:
       - name: Deploy to server
         run: |
           rsync -avz --delete \
-          --exclude '.git*' \
-          --exclude 'node_modules' \
-          --exclude 'src' \
-          --exclude '.env' \
-          --exclude '*.log' \
-          dist/*/ \
+          dist/*/browser/ \
           ${{ env.SERVER_USER }}@${{ env.DOMAIN }}:${{ env.DEPLOY_PATH }}/${{ env.DOMAIN }}/${{ env.SUBDOMAIN }}.${{ env.DOMAIN }}/
 
       - name: Verify deployment
