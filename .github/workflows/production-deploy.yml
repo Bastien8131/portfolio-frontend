@@ -11,15 +11,28 @@ env:
   SUBDOMAIN: ${{ secrets.SUBDOMAIN }}
   SERVER_USER: ${{ secrets.SERVER_USER }}
   DEPLOY_PATH: /var/www/vhosts
+  NODE_VERSION: '18.x'
 
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
     
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm clean-install
+
+      - name: Build Angular app
+        run: npm run build --configuration=production
+        
       - name: Setup SSH
         uses: webfactory/ssh-agent@v0.8.0
         with:
@@ -42,9 +55,10 @@ jobs:
           rsync -avz --delete \
           --exclude '.git*' \
           --exclude 'node_modules' \
+          --exclude 'src' \
           --exclude '.env' \
           --exclude '*.log' \
-          ./ \
+          dist/*/ \
           ${{ env.SERVER_USER }}@${{ env.DOMAIN }}:${{ env.DEPLOY_PATH }}/${{ env.DOMAIN }}/${{ env.SUBDOMAIN }}.${{ env.DOMAIN }}/
 
       - name: Verify deployment
