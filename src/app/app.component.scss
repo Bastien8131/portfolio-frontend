@@ -1,0 +1,15 @@
+::ng-deep .header-less-tabs {
+  .mat-mdc-tab-header {
+    display: none !important;
+  }
+}
+
+
+#navbar{
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  padding: 20px 20px;
+}

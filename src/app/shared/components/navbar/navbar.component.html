@@ -1,0 +1,12 @@
+<!-- shared/components/navbar/navbar.component.html -->
+<nav class="navbar">
+  <div class="nav-items">
+    <button *ngFor="let page of pages; let i = index"
+            [class.active]="selectedIndex === i"
+            (click)="selectPage(i)">
+      <!-- Si vous utilisez des icônes -->
+<!--      <span *ngIf="page.icon" class="icon">{{ page.icon }}</span>-->
+      {{ page.label }}
+    </button>
+  </div>
+</nav>
