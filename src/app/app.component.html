@@ -1,10 +1,13 @@
-<!-- app.component.html -->
-<mat-tab-group class="header-less-tabs" [selectedIndex]="selectedPageIndex"  >
-  <mat-tab *ngFor="let page of pages; let i = index" [label]="page.label">
+<splide class="header-less-tabs" [selectedSlideIndex]="selectedPageIndex" [options]="options">
+  <splide-slide *ngFor="let page of pages; let i = index">
     <ng-container *ngComponentOutlet="page.component"></ng-container>
-  </mat-tab>
-</mat-tab-group>
+  </splide-slide>
+</splide>
 
 <div id="navbar">
-  <app-navbar [pages]="pages" [selectedIndex]="selectedPageIndex" (pageSelected)="selectedPageIndex = $event"></app-navbar>
+  <app-navbar
+    [pages]="pages"
+    [selectedIndex]="selectedPageIndex"
+    (pageSelected)="selectedPageIndex = $event"
+  ></app-navbar>
 </div>
