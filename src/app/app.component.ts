@@ -1,5 +1,5 @@
 // app.component.ts
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatTabsModule } from '@angular/material/tabs';
 import { FormsModule } from '@angular/forms';
@@ -9,6 +9,7 @@ import {PageService} from './core/services/page.service';
 import {ProfileStrapiService} from './core/services/strapi/profile.strapi.service';
 import {AccueilComponent} from './features/accueil/accueil.component';
 import {NgxSplideModule} from 'ngx-splide';
+import {SplideOptions} from './core/models/splide-options';
 
 @Component({
   selector: 'app-root',
@@ -21,12 +22,12 @@ import {NgxSplideModule} from 'ngx-splide';
     NgxSplideModule,
   ],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
 })
 export class AppComponent implements OnInit {
   pages: Page[] = [];
   selectedPageIndex = 0;
-  options: any;
+  options!: SplideOptions;
   title!: 'portfolio-frontend';
 
   constructor(
@@ -41,6 +42,7 @@ export class AppComponent implements OnInit {
       speed: 750,
       arrows: false,
       pagination: false,
+      drag: false,
     }
   }
 }
