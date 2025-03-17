@@ -3,10 +3,13 @@ import {ProfileStrapiService} from '../../core/services/strapi/profile.strapi.se
 import {ArticleStrapiService} from '../../core/services/strapi/article.strapi.service';
 import {Article} from '../../core/models/strapi/collectionType/article.model';
 import {Profile} from '../../core/models/strapi/singleType/profile.model';
+import {MarkdownComponent} from 'ngx-markdown';
 
 @Component({
   selector: 'app-accueil',
-  imports: [],
+  imports: [
+    MarkdownComponent
+  ],
   templateUrl: './accueil.component.html',
   styleUrl: './accueil.component.scss'
 })
