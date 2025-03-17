@@ -27,6 +27,7 @@ export class AppComponent implements OnInit {
   pages: Page[] = [];
   selectedPageIndex = 0;
   options: any;
+  title!: 'portfolio-frontend';
 
   constructor(
     private pageService: PageService,
