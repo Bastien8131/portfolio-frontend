@@ -5,30 +5,47 @@ import {Article} from '../../core/models/strapi/collectionType/article.model';
 import {Profile} from '../../core/models/strapi/singleType/profile.model';
 import {MarkdownComponent} from 'ngx-markdown';
 import {PageService} from '../../core/services/page.service';
+import {FilesStrapiService} from '../../core/services/strapi/files.strapi.service';
+import {StrapiFile} from '../../core/models/strapi/file.model';
+import {NgIf} from '@angular/common';
 
 @Component({
   selector: 'app-accueil',
   imports: [
-    MarkdownComponent
+    MarkdownComponent,
+    NgIf
   ],
   templateUrl: './accueil.component.html',
   styleUrl: './accueil.component.scss'
 })
 export class AccueilComponent implements OnInit {
   profile!: Profile | null;
+  file!: any | null;
 
   constructor(
     private profileService: ProfileStrapiService,
     protected pageServices: PageService,
+    protected fileService: FilesStrapiService,
   ) {}
 
   ngOnInit() {
-    // Charger le profil si ce n'est pas déjà fait
-    this.profileService.loadProfile();
+
+    this.fileService.file$.subscribe(files => {
+      this.file = files;
+    });
 
     // S'abonner aux changements du profil
     this.profileService.profile$.subscribe(profile => {
       this.profile = profile;
     });
   }
+
+  showFile() {
+    console.log(this.file);
+    console.log(this.profile);
+  }
+
+
+
+
 }

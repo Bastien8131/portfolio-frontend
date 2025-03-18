@@ -10,6 +10,7 @@ import {ProfileStrapiService} from './core/services/strapi/profile.strapi.servic
 import {AccueilComponent} from './features/accueil/accueil.component';
 import {NgxSplideModule} from 'ngx-splide';
 import {SplideOptions} from './core/models/splide-options';
+import {FilesStrapiService} from './core/services/strapi/files.strapi.service';
 
 @Component({
   selector: 'app-root',
@@ -32,12 +33,15 @@ export class AppComponent implements OnInit {
 
   constructor(
     protected pageService: PageService,
-    private profileService: ProfileStrapiService
+    private profileService: ProfileStrapiService,
+    private filesService: FilesStrapiService,
   ) {}
 
   ngOnInit(): void {
     this.pages = this.pageService.pages;
-    // this.profileService.loadProfile();
+    this.profileService.loadProfile();
+    this.filesService.loadFiles();
+
     this.options = {
       speed: 750,
       arrows: false,

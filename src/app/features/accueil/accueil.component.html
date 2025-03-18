@@ -1,6 +1,6 @@
 <div class="page-content">
   <div class="heading">
-    <img src="http://localhost:1338/uploads/logo_b10e6c1667.svg" alt="">
+    <img *ngIf="file" [src]="fileService.getFile('logo.svg')" alt="Logo">
     <h2>{{profile?.statut}}</h2>
   </div>
 
