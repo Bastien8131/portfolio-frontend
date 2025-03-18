@@ -20,7 +20,7 @@ import {NgIf} from '@angular/common';
 })
 export class AccueilComponent implements OnInit {
   profile!: Profile | null;
-  file!: any | null;
+  files!: any | null;
 
   constructor(
     private profileService: ProfileStrapiService,
@@ -30,8 +30,8 @@ export class AccueilComponent implements OnInit {
 
   ngOnInit() {
 
-    this.fileService.file$.subscribe(files => {
-      this.file = files;
+    this.fileService.files$.subscribe(files => {
+      this.files = files;
     });
 
     // S'abonner aux changements du profil
@@ -41,7 +41,7 @@ export class AccueilComponent implements OnInit {
   }
 
   showFile() {
-    console.log(this.file);
+    console.log(this.files);
     console.log(this.profile);
   }
 

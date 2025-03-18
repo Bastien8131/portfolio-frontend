@@ -10,8 +10,8 @@ import { environment } from '../../environments/environment';
 })
 export class FilesStrapiService {
   private endpoint = 'upload/files';
-  private fileSubject = new BehaviorSubject<StrapiFile[] | null>(null);
-  public file$ = this.fileSubject.asObservable();
+  private filesSubject = new BehaviorSubject<StrapiFile[]>([]);
+  public files$ = this.filesSubject.asObservable();
   private loaded = false;
   private apiUrl = environment.strapiUrl + '/api';
   private apiToken = environment.strapiApiToken;
@@ -25,7 +25,7 @@ export class FilesStrapiService {
     if (!this.loaded) {
       this.get().subscribe({
         next: (data) => {
-          this.fileSubject.next(data);
+          this.filesSubject.next(data);
           this.loaded = true;
         },
         error: (error) => {
@@ -46,13 +46,12 @@ export class FilesStrapiService {
   }
 
   getFiles() {
-    return this.file$;
+    return this.files$;
   }
 
   // Méthode pour récupérer l'URL complète d'un fichier par son nom
   getFile(filename: string): string | null {
-    const files = this.fileSubject.getValue();
-    if (!files) return null;
+    const files = this.filesSubject.getValue();
 
     const file = files.find(f => f.name === filename);
     if (!file) return null;
