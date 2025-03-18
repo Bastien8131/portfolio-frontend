@@ -9,6 +9,7 @@ import {ContactComponent} from '../../features/contact/contact.component';
   providedIn: 'root'
 })
 export class PageService {
+  private _currentPage: number = 0;
   private _pages: Page[] = [
     {
       id: 'accueil',
@@ -32,7 +33,7 @@ export class PageService {
       id: 'contact',
       label: 'Contact',
       component: ContactComponent,
-      icon: 'mail'
+      icon: 'contact'
     }
   ];
 
@@ -46,5 +47,21 @@ export class PageService {
 
   getPageIndexById(id: string): number {
     return this._pages.findIndex(page => page.id === id);
+  }
+
+
+  get currentPage(): number {
+    return this._currentPage;
+  }
+
+  set currentPage(value: number) {
+    if (value >= 0 && value < this._pages.length) {
+      this._currentPage = value;
+    }
+  }
+
+  goTo(name: string) {
+    const index = this.getPageIndexById(name);
+    this.currentPage = index;
   }
 }

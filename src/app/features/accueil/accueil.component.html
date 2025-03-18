@@ -1,6 +1,15 @@
-<p>accueil works!</p>
+<div class="page-content">
+  <div class="heading">
+    <img *ngIf="files" [src]="fileService.getFile('logo.svg')" alt="Logo">
+    <h2>{{profile?.statut}}</h2>
+  </div>
 
-test
-<p></p>
+  <div>
+    <markdown [data]="profile?.descriptionAccueil"></markdown>
 
-<markdown [data]="profile?.descriptionAccueil"></markdown>
+    <p>
+      J'ai piqué votre curiosité, aller voir
+      <u class="link" (click)="pageServices.goTo('projets')" >mes projets</u>
+    </p>
+  </div>
+</div>
