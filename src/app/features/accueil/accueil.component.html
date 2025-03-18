@@ -4,10 +4,12 @@
     <h2>{{profile?.statut}}</h2>
   </div>
 
-  <markdown [data]="profile?.descriptionAccueil"></markdown>
+  <div>
+    <markdown [data]="profile?.descriptionAccueil"></markdown>
 
-  <p>
-    J'ai piqué votre curiosité, aller voir
-    <span (click)="goToProjets()" ) >mes projets</span>
-  </p>
+    <p>
+      J'ai piqué votre curiosité, aller voir
+      <u class="link" (click)="pageServices.goTo('projets')" >mes projets</u>
+    </p>
+  </div>
 </div>

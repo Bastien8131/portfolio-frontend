@@ -4,6 +4,7 @@ import {ArticleStrapiService} from '../../core/services/strapi/article.strapi.se
 import {Article} from '../../core/models/strapi/collectionType/article.model';
 import {Profile} from '../../core/models/strapi/singleType/profile.model';
 import {MarkdownComponent} from 'ngx-markdown';
+import {PageService} from '../../core/services/page.service';
 
 @Component({
   selector: 'app-accueil',
@@ -18,6 +19,7 @@ export class AccueilComponent implements OnInit {
 
   constructor(
     private profileService: ProfileStrapiService,
+    protected pageServices: PageService,
   ) {}
 
   ngOnInit() {

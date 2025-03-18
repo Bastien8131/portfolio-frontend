@@ -31,7 +31,7 @@ export class AppComponent implements OnInit {
   title!: 'portfolio-frontend';
 
   constructor(
-    private pageService: PageService,
+    protected pageService: PageService,
     private profileService: ProfileStrapiService
   ) {}
 
