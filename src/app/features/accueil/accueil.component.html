@@ -1,6 +1,13 @@
-<p>accueil works!</p>
+<div class="page-content">
+  <div class="heading">
+    <img src="http://localhost:1338/uploads/logo_b10e6c1667.svg" alt="">
+    <h2>{{profile?.statut}}</h2>
+  </div>
 
-test
-<p></p>
+  <markdown [data]="profile?.descriptionAccueil"></markdown>
 
-<markdown [data]="profile?.descriptionAccueil"></markdown>
+  <p>
+    J'ai piqué votre curiosité, aller voir
+    <span (click)="goToProjets()" ) >mes projets</span>
+  </p>
+</div>
