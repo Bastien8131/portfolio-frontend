@@ -1,4 +1,4 @@
-<splide class="header-less-tabs" [selectedSlideIndex]="selectedPageIndex" [options]="options">
+<splide class="header-less-tabs" [selectedSlideIndex]="pageService.currentPage" [options]="options">
   <splide-slide *ngFor="let page of pages; let i = index">
     <ng-container *ngComponentOutlet="page.component"></ng-container>
   </splide-slide>
@@ -7,7 +7,7 @@
 <div id="navbar">
   <app-navbar
     [pages]="pages"
-    [selectedIndex]="selectedPageIndex"
-    (pageSelected)="selectedPageIndex = $event"
+    [selectedIndex]="pageService.currentPage"
+    (pageSelected)="pageService.currentPage = $event"
   ></app-navbar>
 </div>
