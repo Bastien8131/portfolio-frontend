@@ -1,1 +1,10 @@
-<p>projets works!</p>
+<div class="page-content">
+  <ng-container *ngFor="let projet of this.projets">
+    <div class="card">
+      <h3>{{projet.titre}}</h3>
+      <p>{{projet.description}}</p>
+    </div>
+  </ng-container>
+</div>
+
+
