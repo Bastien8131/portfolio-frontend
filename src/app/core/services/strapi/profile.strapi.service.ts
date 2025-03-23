@@ -9,7 +9,7 @@ import {Profile} from '../../models/strapi/singleType/profile.model';
 export class ProfileStrapiService {
   private endpoint = 'profile';
   private profileSubject = new BehaviorSubject<Profile>({} as Profile);
-  public profile$ = this.profileSubject.asObservable();
+  public profile$ = this.profileSubject.asObservable()
   private loaded = false;
 
   constructor(private apiService: ApiService) { }

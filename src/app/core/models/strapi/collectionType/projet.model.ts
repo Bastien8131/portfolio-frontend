@@ -12,8 +12,8 @@ export interface Projet {
   updatedAt: string
   publishedAt: string
   locale: string
-  articles: StrapiRelation<Article>
-  technologies: StrapiRelation<Technologie>
-  repositories: StrapiRelation<Repositorie>
+  articles: StrapiRelation<Article[]>
+  technologies: StrapiRelation<Technologie[]>
+  repositories: StrapiRelation<Repositorie[]>
   // localizations: Localizations
 }

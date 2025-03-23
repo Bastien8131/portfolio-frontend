@@ -44,6 +44,6 @@ export interface StrapiImage {
 }
 
 export interface StrapiRelation<T> {
-  data: StrapiData<T>[];
+  data: StrapiData<T>;
   // data: StrapiData<T>[] | StrapiData<T>;
 }

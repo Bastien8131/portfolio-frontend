@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import {map, Observable} from 'rxjs';
 import {StrapiData, StrapiRoot} from '../../models/strapi/strapi.model';
+import {StrapiFile} from '../../models/strapi/file.model';
 
 @Injectable({
   providedIn: 'root'
@@ -79,6 +80,21 @@ export class ApiService {
         id: response.data.id,
         ...response.data.attributes
       } as unknown as T))
+    );
+  }
+
+  // Récupère un item d'une collection
+  getFile<T>(id: number, params?: any): Observable<T> {
+    const httpParams = params?.populate ? new HttpParams().append('populate', params.populate) : new HttpParams();
+
+    return this.http.get<StrapiFile>(
+      `${this.apiUrl}/upload/files/${id}`,
+      {
+        headers: this.getHeaders(),
+        params: httpParams
+      }
+    ).pipe(
+      map(response => response as unknown as T)
     );
   }
 
