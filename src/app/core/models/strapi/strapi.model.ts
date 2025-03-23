@@ -1,24 +1,24 @@
-export interface StrapiRoot {
-  data: StrapiData[] | StrapiData;
+export interface StrapiRoot<T> {
+  data: StrapiData<T>[] | StrapiData<T>;
   meta: {
     pagination?: StrapiPagination;
   };
 }
 
-export interface StrapiData {
+export interface StrapiData<T> {
   id: number;
-  attributes: StrapiAttributes;
+  attributes: T;
 }
 
-export interface StrapiAttributes {
-  titre: string
-  corp: string
-  type: string
-  createdAt: string
-  updatedAt: string
-  publishedAt: any
-  locale: string
-}
+// export interface StrapiAttributes {
+//   titre: string
+//   corp: string
+//   type: string
+//   createdAt: string
+//   updatedAt: string
+//   publishedAt: any
+//   locale: string
+// }
 
 export interface StrapiPagination {
   page: number;
@@ -43,6 +43,7 @@ export interface StrapiImage {
   };
 }
 
-export interface StrapiRelation {
-  data: StrapiData[] | StrapiData | null;
+export interface StrapiRelation<T> {
+  data: StrapiData<T>[];
+  // data: StrapiData<T>[] | StrapiData<T>;
 }

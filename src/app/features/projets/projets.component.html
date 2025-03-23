@@ -1,1 +1,14 @@
-<p>projets works!</p>
+<div class="page-content">
+  <ng-container *ngFor="let projet of this.projets">
+    <div class="card">
+      <h3>{{projet.titre}}</h3>
+      <p>{{projet.description}}</p>
+      <button
+        *ngIf="projet.articles.data.length != 0"
+        (click)="openArticle(projet.articles.data[0].id)"
+      >Voir le projet</button>
+    </div>
+  </ng-container>
+</div>
+
+
