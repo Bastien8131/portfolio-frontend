@@ -7,13 +7,15 @@ import {NgIf} from '@angular/common';
 
 @Component({
   selector: 'app-a-propos',
-  imports: [],
+  imports: [
+    NgIf
+  ],
   templateUrl: './a-propos.component.html',
   styleUrl: './a-propos.component.scss'
 })
 export class AProposComponent implements OnInit {
   profile!: Profile;
-  cv!: StrapiFile;
+  cv?: StrapiFile;
 
   constructor(
     private filesStrapiService: FilesStrapiService,
@@ -24,7 +26,10 @@ export class AProposComponent implements OnInit {
   ngOnInit() {
     this.profileService.profile$.subscribe(profile => {
       this.profile = profile;
-      console.log(this.profile);
+      this.cv = {
+        ...profile.cv?.data.attributes,
+        id: profile.cv?.data.id
+      }
     });
   }
 
