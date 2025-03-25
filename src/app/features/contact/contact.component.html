@@ -12,7 +12,7 @@
       </ng-container>
     </div>
   </div>
-  <form [formGroup]="emailForm" (ngSubmit)="onSubmit()">
+  <form [formGroup]="emailForm" (ngSubmit)="sendEmail($event)">
     <div>
       <input type="text" id="nom" formControlName="nom" name="nom" placeholder="Nom" required>
       <input type="text" id="prenom" formControlName="prenom" name="prenom" placeholder="Prenom" required>
