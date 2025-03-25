@@ -16,7 +16,7 @@ import {ArticleStrapiService} from '../../core/services/strapi/article.strapi.se
   styleUrl: './projets.component.scss'
 })
 export class ProjetsComponent implements OnInit {
-  projets!: Projet[]
+  projets: Projet[] = []
 
   constructor(
     protected projetsService: ProjetsStrapiService,
@@ -27,7 +27,7 @@ export class ProjetsComponent implements OnInit {
 
   ngOnInit() {
     this.projetsService.projets$.subscribe(projets => {
-      this.projets = projets.sort((a, b) => new Date(b.dateDebut).getTime() - new Date(a.dateDebut).getTime());
+      this.projets = projets
     })
   }
 
@@ -45,5 +45,13 @@ export class ProjetsComponent implements OnInit {
       console.log('The dialog was closed');
       console.log(result);
     });
+  }
+
+  getSortProjet() {
+    if (!Array.isArray(this.projets)) {
+      return [];
+    }
+
+    return this.projets.sort((a, b) => new Date(b.dateDebut).getTime() - new Date(a.dateDebut).getTime());
   }
 }

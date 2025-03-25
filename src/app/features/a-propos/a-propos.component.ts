@@ -6,9 +6,9 @@ import {ProfileStrapiService} from '../../core/services/strapi/profile.strapi.se
 import {NgIf} from '@angular/common';
 import {MarkdownComponent} from 'ngx-markdown';
 import {PdfViewerModule} from 'ng2-pdf-viewer';
-import {environment} from '../../core/environments/environment';
 import {MatDialog} from '@angular/material/dialog';
 import {DialogPdfComponent} from '../../shared/components/dialog-pdf/dialog-pdf.component';
+import {environment} from '../../../environments/environment';
 
 @Component({
   selector: 'app-a-propos',
