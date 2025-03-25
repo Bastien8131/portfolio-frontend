@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import {BehaviorSubject, firstValueFrom, Observable} from 'rxjs';
 import { ApiService } from './api.strapi.service';
 import { StrapiFile } from '../../models/strapi/file.model';
 import { HttpClient } from '@angular/common/http';
@@ -23,7 +23,7 @@ export class FilesStrapiService {
 
   loadFiles() {
     if (!this.loaded) {
-      this.get().subscribe({
+      this.getAll().subscribe({
         next: (data) => {
           this.filesSubject.next(data);
           this.loaded = true;
@@ -35,7 +35,7 @@ export class FilesStrapiService {
     }
   }
 
-  private get(): Observable<StrapiFile[]> {
+  private getAll(): Observable<StrapiFile[]> {
     // L'API upload/files ne suit pas le même format que les autres endpoints,
     // donc on doit faire une requête HTTP directe au lieu d'utiliser apiService.getCollection
     return this.http.get<StrapiFile[]>(`${this.apiUrl}/${this.endpoint}`, {
@@ -47,6 +47,12 @@ export class FilesStrapiService {
 
   getFiles() {
     return this.files$;
+  }
+
+  async get(id: number): Promise<StrapiFile> {
+    return await firstValueFrom(
+      this.apiService.getFile<StrapiFile>(id, {populate: '*'})
+    );
   }
 
   // Méthode pour récupérer l'URL complète d'un fichier par son nom
