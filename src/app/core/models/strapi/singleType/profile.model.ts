@@ -1,18 +1,19 @@
-// models/profile.model.ts
-import {Lien} from '../collectionType/lien.model';
+import {StrapiRelation} from '../strapi.model';
+import {StrapiFile} from '../file.model';
 
 export interface Profile {
-  id: number;
-  statut: string;
-  dateNaissance: string;
-  email: string;
-  cursus: string;
-  createdAt: string;
-  updatedAt: string;
-  locale: string;
+  statut: string
+  dateNaissance: string
+  email: string
+  cursus: string
+  createdAt: string
+  updatedAt: string
+  locale: string
+  descriptionAccueil: string
+  descriptionAPropos: string
   reseau: Reseau
-  descriptionAccueil: string;
-  descriptionAPropos: string;
+  cv: StrapiRelation<StrapiFile>
+  localizations: any
 }
 
 interface Reseau {
