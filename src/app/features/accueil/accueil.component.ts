@@ -8,6 +8,7 @@ import {PageService} from '../../core/services/page.service';
 import {FilesStrapiService} from '../../core/services/strapi/files.strapi.service';
 import {StrapiFile} from '../../core/models/strapi/file.model';
 import {NgIf} from '@angular/common';
+import {ProjetsStrapiService} from '../../core/services/strapi/projets.strapi.service';
 
 @Component({
   selector: 'app-accueil',
@@ -25,7 +26,7 @@ export class AccueilComponent implements OnInit {
   constructor(
     private profileService: ProfileStrapiService,
     protected pageServices: PageService,
-    protected fileService: FilesStrapiService,
+    protected fileService: FilesStrapiService
   ) {}
 
   ngOnInit() {
@@ -34,7 +35,6 @@ export class AccueilComponent implements OnInit {
       this.files = files;
     });
 
-    // S'abonner aux changements du profil
     this.profileService.profile$.subscribe(profile => {
       this.profile = profile;
     });
