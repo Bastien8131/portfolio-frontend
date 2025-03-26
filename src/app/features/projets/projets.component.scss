@@ -1,0 +1,16 @@
+.page-content{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  .card{
+    width: 100%;
+    max-width: 280px;
+    aspect-ratio: 1/1;
+    border-radius: 20px;
+    color: white;
+    background-color: #423d6e;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+}

@@ -1,0 +1,21 @@
+<div class="page-content">
+  <pdf-viewer
+    [src]="url"
+    [render-text]="true"
+    [rotation]="0"
+    [original-size]="false"
+    [show-all]="true"
+    [fit-to-page]="false"
+    [zoom]="zoom"
+    [zoom-scale]="'page-width'"
+    [stick-to-page]="false"
+    [external-link-target]="'blank'"
+    [autoresize]="true"
+    [show-borders]="false"
+    style="height: 100%; aspect-ratio: 1 / 1.414;"
+  ></pdf-viewer>
+  <button (click)="zoomBtn('in')">Zoom In</button>
+  <button (click)="zoomBtn('out')">Zoom Out</button>
+</div>
+
+

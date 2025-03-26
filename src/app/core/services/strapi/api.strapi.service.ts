@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
-import { environment } from '../../environments/environment';
+import { environment } from '../../../../environments/environment';
 import {map, Observable} from 'rxjs';
 import {StrapiData, StrapiRoot} from '../../models/strapi/strapi.model';
+import {StrapiFile} from '../../models/strapi/file.model';
 
 @Injectable({
   providedIn: 'root'
@@ -35,14 +36,14 @@ export class ApiService {
       // Autres paramètres...
     }
 
-    return this.http.get<StrapiRoot>(
+    return this.http.get<StrapiRoot<T>>(
       `${this.apiUrl}/${endpoint}`,
       {
         headers: this.getHeaders(),
         params: httpParams
       }
     ).pipe(
-      map((response: StrapiRoot) => {
+      map((response: StrapiRoot<T>) => {
         // Vérifier si data est un tableau
         if (Array.isArray(response.data)) {
           return response.data.map(item => ({
@@ -68,7 +69,7 @@ export class ApiService {
       httpParams = httpParams.append('populate', params.populate);
     }
 
-    return this.http.get<{ data: StrapiData }>(
+    return this.http.get<{ data: StrapiData<T> }>(
       `${this.apiUrl}/${endpoint}/${id}`,
       {
         headers: this.getHeaders(),
@@ -82,6 +83,21 @@ export class ApiService {
     );
   }
 
+  // Récupère un item d'une collection
+  getFile<T>(id: number, params?: any): Observable<T> {
+    const httpParams = params?.populate ? new HttpParams().append('populate', params.populate) : new HttpParams();
+
+    return this.http.get<StrapiFile>(
+      `${this.apiUrl}/upload/files/${id}`,
+      {
+        headers: this.getHeaders(),
+        params: httpParams
+      }
+    ).pipe(
+      map(response => response as unknown as T)
+    );
+  }
+
   // Récupère un single type
   getSingleType<T>(endpoint: string, params?: any): Observable<T> {
     let httpParams = new HttpParams();
@@ -90,7 +106,7 @@ export class ApiService {
       httpParams = httpParams.append('populate', params.populate);
     }
 
-    return this.http.get<{ data: StrapiData }>(
+    return this.http.get<{ data: StrapiData<T> }>(
       `${this.apiUrl}/${endpoint}`,
       {
         headers: this.getHeaders(),
@@ -105,7 +121,7 @@ export class ApiService {
   }
 
   createItem<T>(endpoint: string, data: Partial<T>): Observable<T> {
-    return this.http.post<{ data: StrapiData }>(
+    return this.http.post<{ data: StrapiData<T> }>(
       `${this.apiUrl}/${endpoint}`,
       { data },
       { headers: this.getHeaders() }
@@ -118,7 +134,7 @@ export class ApiService {
   }
 
   updateItem<T>(endpoint: string, id: number, data: Partial<T>): Observable<T> {
-    return this.http.put<{ data: StrapiData }>(
+    return this.http.put<{ data: StrapiData<T> }>(
       `${this.apiUrl}/${endpoint}/${id}`,
       { data },
       { headers: this.getHeaders() }
@@ -131,7 +147,7 @@ export class ApiService {
   }
 
   deleteItem<T>(endpoint: string, id: number): Observable<T> {
-    return this.http.delete<{ data: StrapiData }>(
+    return this.http.delete<{ data: StrapiData<T> }>(
       `${this.apiUrl}/${endpoint}/${id}`,
       { headers: this.getHeaders() }
     ).pipe(
