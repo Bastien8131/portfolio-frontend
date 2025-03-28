@@ -37,7 +37,8 @@ export class ContactComponent implements OnInit {
   }
 
   getLiens() {
-    return this.profile.reseau.data.map(daum => daum.attributes);
+    if (this.profile.reseau == undefined) return null;
+    return this.profile.reseau.data.map(d => d.attributes);
   }
 
   sendEmail(e: Event) {
