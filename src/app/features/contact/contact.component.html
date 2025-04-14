@@ -3,24 +3,26 @@
   <div class="liens-externes">
     <div>
       <h2>email</h2>
-      <a href="mailto:{{profile.email}}">{{profile.email}}</a>
+      <div id="mon-email">
+        <a href="mailto:{{profile.email}}">{{profile.email}}</a>
+      </div>
     </div>
     <div>
       <h2>reseau</h2>
-      <ng-container *ngFor="let lien of getLiens()">
-        <a [href]="lien.url">{{lien.nom}}</a>
-      </ng-container>
+      <div id="web">
+        <ng-container *ngFor="let lien of getLiens()">
+          <a class="btn-lien-ext" [href]="lien.url">{{lien.nom}}</a>
+        </ng-container>
+      </div>
     </div>
   </div>
   <form [formGroup]="emailForm" (ngSubmit)="sendEmail($event)">
-    <div>
-      <input type="text" id="nom" formControlName="nom" name="nom" placeholder="Nom" required>
-      <input type="text" id="prenom" formControlName="prenom" name="prenom" placeholder="Prenom" required>
-    </div>
-    <div>
+    <div id="corp">
+      <div id="nom-prenom">
+        <input type="text" id="nom" formControlName="nom" name="nom" placeholder="Nom" required>
+        <input type="text" id="prenom" formControlName="prenom" name="prenom" placeholder="Prenom" required>
+      </div>
       <input type="email" id="email" formControlName="email" name="email" placeholder="Email" required>
-    </div>
-    <div>
       <textarea id="message" formControlName="message" name="message" placeholder="Message" required></textarea>
     </div>
     <button type="submit">Envoyer</button>

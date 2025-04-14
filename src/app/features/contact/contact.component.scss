@@ -1,0 +1,104 @@
+@import "../../shared/styles/breakpoints";
+
+:host ::ng-deep {
+
+  .page-content{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    h1{
+      font-size: 32px;
+      margin: 0;
+    }
+
+    h2{
+      font-size: 20px;
+      text-transform: uppercase;
+      margin: 0;
+    }
+
+    .liens-externes{
+      a{
+        text-align: center;
+      }
+
+      #mon-email{
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        padding: 10px 0;
+        font-size: larger;
+        gap: 5px;
+      }
+
+      #web{
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+      }
+
+      .btn-lien-ext{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        padding: 10px;
+        gap: 5px;
+        background-color: #3F3A6B;
+        color: white;
+        border-radius: 10px;
+        font-size: 20px;
+      }
+    }
+
+    form{
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      height: min-content;
+      aspect-ratio: 14/19;
+      gap: 20px;
+      padding: 20px;
+      background-color: rgba(255, 255, 255, 0.58);
+      box-sizing: border-box;
+
+      #corp{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        #nom-prenom{
+          display: flex;
+          gap: 20px;
+
+          input{
+            width: 100%;
+          }
+        }
+      }
+
+      input, textarea, button{
+        padding: 5px 20px;
+        box-sizing: border-box;
+        border-radius: 20px;
+        font-size: 20px;
+        width: 100%;
+
+        &::placeholder{
+          font-size: 20px;
+        }
+      }
+
+      textarea{
+        min-height: 120px;
+      }
+
+    }
+  }
+
+
+  @include md-up{
+
+
+  }
+}
