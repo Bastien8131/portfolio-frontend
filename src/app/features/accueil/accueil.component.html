@@ -1,12 +1,14 @@
 <div class="page-content">
   <div class="heading">
-    <img *ngIf="files" [src]="fileService.getFile('logo.svg')" alt="Logo">
+    <div class="title">
+      <h1>Moi, c'est</h1>
+      <img *ngIf="files" [src]="fileService.getFile('logo.svg')" alt="Logo">
+    </div>
     <h2>{{profile?.statut}}</h2>
   </div>
 
-  <div>
+  <div class="description">
     <markdown [data]="profile?.descriptionAccueil"></markdown>
-
     <p>
       J'ai piqué votre curiosité, aller voir
       <u class="link" (click)="pageServices.goTo('projets')" >mes projets</u>
