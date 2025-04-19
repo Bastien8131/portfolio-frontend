@@ -6,7 +6,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { DialogPdfComponent } from '../../shared/components/dialog-pdf/dialog-pdf.component';
 import { environment } from '../../../environments/environment';
 import { DataStoreService } from '../../core/services/store/data-store.service';
-import { map } from 'rxjs';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { Profile } from '../../core/models/strapi/singleType/profile.model';
 
 @Component({
   selector: 'app-a-propos',
@@ -30,15 +32,17 @@ import { map } from 'rxjs';
   styleUrl: './a-propos.component.scss'
 })
 export class AProposComponent {
-  profile$;
-  isLoading$;
-  cvUrl$;
+  // Typage explicite des observables
+  profile$: Observable<Profile | null>;
+  isLoading$: Observable<boolean>;
+  cvUrl$: Observable<string | null>;
   apiUrl = environment.strapiUrl;
 
   constructor(
     private dataStore: DataStoreService,
     public dialog: MatDialog
   ) {
+    // Initialisation après la déclaration
     this.profile$ = this.dataStore.profile$;
     this.isLoading$ = this.dataStore.profileLoading$;
 

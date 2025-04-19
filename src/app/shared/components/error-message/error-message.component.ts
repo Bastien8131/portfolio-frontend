@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AsyncPipe, NgForOf, NgIf, DatePipe } from '@angular/common';
 import { ErrorService, AppError } from '../../../core/services/error.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-error-message',
@@ -92,9 +93,11 @@ import { ErrorService, AppError } from '../../../core/services/error.service';
   `
 })
 export class ErrorMessageComponent {
-  errors$;
+  // Typage explicite de l'observable
+  errors$: Observable<AppError[]>;
 
   constructor(private errorService: ErrorService) {
+    // Initialisation après la déclaration
     this.errors$ = this.errorService.errors$;
   }
 

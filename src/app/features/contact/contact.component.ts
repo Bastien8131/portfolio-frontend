@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
 import { AsyncPipe, NgForOf, NgIf } from '@angular/common';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import emailjs, { EmailJSResponseStatus } from '@emailjs/browser';
+import emailjs from '@emailjs/browser';
 import { environment } from '../../../environments/environment';
 import { DataStoreService } from '../../core/services/store/data-store.service';
 import { Lien } from '../../core/models/strapi/collectionType/lien.model';
-import { map } from 'rxjs';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { Profile } from '../../core/models/strapi/singleType/profile.model';
 
 @Component({
   selector: 'app-contact',
@@ -55,8 +57,11 @@ import { map } from 'rxjs';
 })
 export class ContactComponent {
   private emailJSID = environment.emailJS;
-  profile$;
-  liens$;
+
+  // Typage explicite des observables
+  profile$: Observable<Profile | null>;
+  liens$: Observable<Lien[]>;
+
   emailForm = new FormGroup({
     nom: new FormControl('', { nonNullable: true }),
     prenom: new FormControl('', { nonNullable: true }),
@@ -67,6 +72,7 @@ export class ContactComponent {
   constructor(
     private dataStore: DataStoreService,
   ) {
+    // Initialisation après la déclaration
     this.profile$ = this.dataStore.profile$;
 
     this.liens$ = this.profile$.pipe(

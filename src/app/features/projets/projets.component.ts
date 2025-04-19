@@ -5,7 +5,7 @@ import { DialogArticleComponent } from '../../shared/components/dialog-article/d
 import { MatDialog } from '@angular/material/dialog';
 import { ArticleStrapiService } from '../../core/services/strapi/article.strapi.service';
 import { DataStoreService } from '../../core/services/store/data-store.service';
-import { map } from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-projets',
@@ -40,14 +40,16 @@ import { map } from 'rxjs';
   styleUrl: './projets.component.scss'
 })
 export class ProjetsComponent {
-  projets$;
-  isLoading$;
+  // Typage explicite des observables
+  projets$: Observable<Projet[]>;
+  isLoading$: Observable<boolean>;
 
   constructor(
     private dataStore: DataStoreService,
     private articleService: ArticleStrapiService,
     public dialog: MatDialog
   ) {
+    // Initialisation après la déclaration
     this.projets$ = this.dataStore.projets$;
     this.isLoading$ = this.dataStore.projetsLoading$;
   }
