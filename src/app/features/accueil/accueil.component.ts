@@ -1,51 +1,52 @@
-import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
-import {ProfileStrapiService} from '../../core/services/strapi/profile.strapi.service';
-import {ArticleStrapiService} from '../../core/services/strapi/article.strapi.service';
-import {Article} from '../../core/models/strapi/collectionType/article.model';
-import {Profile} from '../../core/models/strapi/singleType/profile.model';
-import {MarkdownComponent} from 'ngx-markdown';
-import {PageService} from '../../core/services/page.service';
-import {FilesStrapiService} from '../../core/services/strapi/files.strapi.service';
-import {StrapiFile} from '../../core/models/strapi/file.model';
-import {NgIf} from '@angular/common';
-import {ProjetsStrapiService} from '../../core/services/strapi/projets.strapi.service';
+import { Component } from '@angular/core';
+import { MarkdownComponent } from 'ngx-markdown';
+import { PageService } from '../../core/services/page.service';
+import { AsyncPipe, NgIf } from '@angular/common';
+import { DataStoreService } from '../../core/services/store/data-store.service';
 
 @Component({
   selector: 'app-accueil',
+  standalone: true,
   imports: [
     MarkdownComponent,
-    NgIf
+    NgIf,
+    AsyncPipe
   ],
-  templateUrl: './accueil.component.html',
+  template: `
+    <div class="page-content">
+      <div class="heading">
+        <img
+          *ngIf="(files$ | async)?.length"
+          [src]="getFileUrl('logo.svg')"
+          alt="Logo">
+        <h2>{{ (profile$ | async)?.statut }}</h2>
+      </div>
+
+      <div>
+        <markdown [data]="(profile$ | async)?.descriptionAccueil"></markdown>
+
+        <p>
+          J'ai piqué votre curiosité, aller voir
+          <u class="link" (click)="pageServices.goTo('projets')">mes projets</u>
+        </p>
+      </div>
+    </div>
+  `,
   styleUrl: './accueil.component.scss'
 })
-export class AccueilComponent implements OnInit {
-  profile!: Profile | null;
-  files!: any | null;
+export class AccueilComponent {
+  profile$;
+  files$;
 
   constructor(
-    private profileService: ProfileStrapiService,
     protected pageServices: PageService,
-    protected fileService: FilesStrapiService
-  ) {}
-
-  ngOnInit() {
-
-    this.fileService.files$.subscribe(files => {
-      this.files = files;
-    });
-
-    this.profileService.profile$.subscribe(profile => {
-      this.profile = profile;
-    });
+    private dataStore: DataStoreService
+  ) {
+    this.profile$ = this.dataStore.profile$;
+    this.files$ = this.dataStore.files$;
   }
 
-  showFile() {
-    console.log(this.files);
-    console.log(this.profile);
+  getFileUrl(filename: string): string | null {
+    return this.dataStore.getFileByName(filename);
   }
-
-
-
-
 }

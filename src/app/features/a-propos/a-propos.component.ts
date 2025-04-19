@@ -1,50 +1,64 @@
-import {Component, OnInit} from '@angular/core';
-import {Profile} from '../../core/models/strapi/singleType/profile.model';
-import {StrapiFile} from '../../core/models/strapi/file.model';
-import {FilesStrapiService} from '../../core/services/strapi/files.strapi.service';
-import {ProfileStrapiService} from '../../core/services/strapi/profile.strapi.service';
-import {NgIf} from '@angular/common';
-import {MarkdownComponent} from 'ngx-markdown';
-import {PdfViewerModule} from 'ng2-pdf-viewer';
-import {MatDialog} from '@angular/material/dialog';
-import {DialogPdfComponent} from '../../shared/components/dialog-pdf/dialog-pdf.component';
-import {environment} from '../../../environments/environment';
+import { Component } from '@angular/core';
+import { AsyncPipe, NgIf } from '@angular/common';
+import { MarkdownComponent } from 'ngx-markdown';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogPdfComponent } from '../../shared/components/dialog-pdf/dialog-pdf.component';
+import { environment } from '../../../environments/environment';
+import { DataStoreService } from '../../core/services/store/data-store.service';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-a-propos',
+  standalone: true,
   imports: [
     MarkdownComponent,
-    PdfViewerModule
+    PdfViewerModule,
+    NgIf,
+    AsyncPipe
   ],
-  templateUrl: './a-propos.component.html',
+  template: `
+    <ng-container *ngIf="isLoading$ | async">
+      <div class="loading">Chargement des informations...</div>
+    </ng-container>
+
+    <ng-container *ngIf="profile$ | async as profile">
+      <markdown [data]="profile.descriptionAPropos"></markdown>
+      <button *ngIf="cvUrl$ | async" (click)="openPDF()">Voir mon CV</button>
+    </ng-container>
+  `,
   styleUrl: './a-propos.component.scss'
 })
-export class AProposComponent implements OnInit {
-  profile!: Profile;
-  url = '';
+export class AProposComponent {
+  profile$;
+  isLoading$;
+  cvUrl$;
   apiUrl = environment.strapiUrl;
 
   constructor(
-    private filesStrapiService: FilesStrapiService,
-    private profileService: ProfileStrapiService,
+    private dataStore: DataStoreService,
     public dialog: MatDialog
   ) {
-  }
+    this.profile$ = this.dataStore.profile$;
+    this.isLoading$ = this.dataStore.profileLoading$;
 
-  ngOnInit() {
-    this.profileService.profile$.subscribe(profile => {
-      this.profile = profile;
-      this.url = `${this.apiUrl}${profile.cv?.data.attributes.url}`;
-      // this.cv = {
-      //   ...profile.cv?.data.attributes,
-      //   id: profile.cv?.data.id
-      // }
-    });
+    this.cvUrl$ = this.profile$.pipe(
+      map(profile => {
+        if (!profile || !profile.cv?.data?.attributes?.url) {
+          return null;
+        }
+        return `${this.apiUrl}${profile.cv.data.attributes.url}`;
+      })
+    );
   }
 
   openPDF() {
-    let dialogRef = this.dialog.open(DialogPdfComponent, {
-      data: { url: this.url }
-    });
+    this.cvUrl$.subscribe(url => {
+      if (!url) return;
+
+      this.dialog.open(DialogPdfComponent, {
+        data: { url }
+      });
+    }).unsubscribe();
   }
 }

@@ -1,48 +1,90 @@
-import {Component, OnInit} from '@angular/core';
-import {ProfileStrapiService} from '../../core/services/strapi/profile.strapi.service';
-import {Profile} from '../../core/models/strapi/singleType/profile.model';
-import {NgForOf} from '@angular/common';
-import {FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
-import emailjs, { type EmailJSResponseStatus } from '@emailjs/browser';
-import {environment} from '../../../environments/environment';
+import { Component } from '@angular/core';
+import { AsyncPipe, NgForOf, NgIf } from '@angular/common';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import emailjs, { EmailJSResponseStatus } from '@emailjs/browser';
+import { environment } from '../../../environments/environment';
+import { DataStoreService } from '../../core/services/store/data-store.service';
+import { Lien } from '../../core/models/strapi/collectionType/lien.model';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-contact',
+  standalone: true,
   imports: [
     NgForOf,
-    ReactiveFormsModule
+    NgIf,
+    ReactiveFormsModule,
+    AsyncPipe
   ],
-  templateUrl: './contact.component.html',
+  template: `
+    <div class="page-content">
+      <h1>Contact</h1>
+
+      <ng-container *ngIf="profile$ | async as profile">
+        <div class="liens-externes">
+          <div *ngIf="profile.email">
+            <h2>email</h2>
+            <a href="mailto:{{profile.email}}">{{profile.email}}</a>
+          </div>
+
+          <div *ngIf="liens$ | async as liens">
+            <h2>reseau</h2>
+            <ng-container *ngFor="let lien of liens">
+              <a [href]="lien.url" target="_blank">{{lien.nom}}</a>
+            </ng-container>
+          </div>
+        </div>
+      </ng-container>
+
+      <form [formGroup]="emailForm" (ngSubmit)="sendEmail($event)">
+        <div>
+          <input type="text" id="nom" formControlName="nom" name="nom" placeholder="Nom" required>
+          <input type="text" id="prenom" formControlName="prenom" name="prenom" placeholder="Prenom" required>
+        </div>
+        <div>
+          <input type="email" id="email" formControlName="email" name="email" placeholder="Email" required>
+        </div>
+        <div>
+          <textarea id="message" formControlName="message" name="message" placeholder="Message" required></textarea>
+        </div>
+        <button type="submit" [disabled]="emailForm.invalid">Envoyer</button>
+      </form>
+    </div>
+  `,
   styleUrl: './contact.component.scss'
 })
-export class ContactComponent implements OnInit {
-  profile!: Profile;
+export class ContactComponent {
   private emailJSID = environment.emailJS;
+  profile$;
+  liens$;
   emailForm = new FormGroup({
-    nom: new FormControl(''),
-    prenom: new FormControl(''),
-    email: new FormControl(''),
-    message: new FormControl(''),
+    nom: new FormControl('', { nonNullable: true }),
+    prenom: new FormControl('', { nonNullable: true }),
+    email: new FormControl('', { nonNullable: true }),
+    message: new FormControl('', { nonNullable: true }),
   });
 
   constructor(
-    private profileService: ProfileStrapiService,
+    private dataStore: DataStoreService,
   ) {
-  }
+    this.profile$ = this.dataStore.profile$;
 
-  ngOnInit() {
-    this.profileService.profile$.subscribe(profile => {
-      this.profile = profile;
-    });
-  }
-
-  getLiens() {
-    if (this.profile.reseau == undefined) return null;
-    return this.profile.reseau.data.map(d => d.attributes);
+    this.liens$ = this.profile$.pipe(
+      map(profile => {
+        if (!profile || !profile.reseau?.data) {
+          return [];
+        }
+        return profile.reseau.data.map(d => d.attributes);
+      })
+    );
   }
 
   sendEmail(e: Event) {
     e.preventDefault();
+
+    if (this.emailForm.invalid) {
+      return;
+    }
 
     // Récupérez les valeurs du formulaire
     const formData = this.emailForm.value;
@@ -58,12 +100,12 @@ export class ContactComponent implements OnInit {
       })
       .then(
         () => {
-          console.log('SUCCESS!');
+          console.log('Email envoyé avec succès');
           // Réinitialisez le formulaire
           this.emailForm.reset();
         },
         (error) => {
-          console.log('FAILED...', error);
+          console.error('Erreur lors de l\'envoi de l\'email', error);
         },
       );
   }
