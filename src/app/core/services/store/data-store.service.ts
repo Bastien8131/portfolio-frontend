@@ -8,23 +8,27 @@ import { Article } from '../../models/strapi/collectionType/article.model';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../../environments/environment';
 import { ErrorService } from '../error.service';
+import {Liens} from '../../models/strapi/collectionType/lien.model';
 
 interface AppState {
   profile: Profile | null;
   files: StrapiFile[];
   projets: Projet[];
   articles: Article[];
+  liens: Liens[];
   loading: {
     profile: boolean;
     files: boolean;
     projets: boolean;
     articles: boolean;
+    liens: boolean;
   };
   errors: {
     profile: any;
     files: any;
     projets: any;
     articles: any;
+    liens: any;
   };
 }
 
@@ -33,17 +37,20 @@ const initialState: AppState = {
   files: [],
   projets: [],
   articles: [],
+  liens: [],
   loading: {
     profile: false,
     files: false,
     projets: false,
-    articles: false
+    articles: false,
+    liens: false
   },
   errors: {
     profile: null,
     files: null,
     projets: null,
-    articles: null
+    articles: null,
+    liens: null,
   }
 };
 
@@ -63,12 +70,14 @@ export class DataStoreService {
   files$ = this.state$.pipe(map(state => state.files));
   projets$ = this.state$.pipe(map(state => state.projets));
   articles$ = this.state$.pipe(map(state => state.articles));
+  liens$ = this.state$.pipe(map(state => state.liens));
 
   // Loading state selectors
   profileLoading$ = this.state$.pipe(map(state => state.loading.profile));
   filesLoading$ = this.state$.pipe(map(state => state.loading.files));
   projetsLoading$ = this.state$.pipe(map(state => state.loading.projets));
   articlesLoading$ = this.state$.pipe(map(state => state.loading.articles));
+  liensLoading$ = this.state$.pipe(map(state => state.loading.liens));
 
   // Any loading selector
   isLoading$ = this.state$.pipe(
@@ -76,7 +85,8 @@ export class DataStoreService {
       state.loading.profile ||
       state.loading.files ||
       state.loading.projets ||
-      state.loading.articles
+      state.loading.articles ||
+      state.loading.liens
     )
   );
 
@@ -100,6 +110,7 @@ export class DataStoreService {
     this.loadFiles();
     this.loadProjets();
     this.loadArticles();
+    this.loadLiens();
   }
 
   // Load profile data
@@ -280,6 +291,51 @@ export class DataStoreService {
         })
       )
       .subscribe();
+  }
+
+  // Load lien
+  loadLiens(){
+    const currentState = this.stateSubject.getValue();
+
+    // Skip if already loaded or loading
+    if ((Array.isArray(currentState.liens) && currentState.liens.length > 0) || currentState.loading.liens) {
+      return;
+    }
+
+    // Update loading state
+    this.updateState({
+      loading: {
+        ...currentState.loading,
+        liens: true
+      }
+    });
+
+    this.apiService.getCollection<Liens>('liens', { populate: '*' })
+      .pipe(
+        tap(liens => {
+          this.updateState({ liens });
+        }),
+        catchError(error => {
+          this.updateState({
+            errors: {
+              ...currentState.errors,
+              liens: error
+            }
+          });
+          this.errorService.addError('Liens', 'Erreur lors du chargement des liens', error);
+          return of([]);
+        }),
+        finalize(() => {
+          this.updateState({
+            loading: {
+              ...this.stateSubject.getValue().loading,
+              liens: false
+            }
+          });
+        })
+      )
+      .subscribe();
+
   }
 
   // Get file by name (helper method)
