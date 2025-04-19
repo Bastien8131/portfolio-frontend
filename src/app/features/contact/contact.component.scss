@@ -10,6 +10,7 @@
     h1{
       font-size: 32px;
       margin: 0;
+      color: #3F3A6B;
     }
 
     h2{
@@ -19,8 +20,17 @@
     }
 
     .liens-externes{
+
+      >div{
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+      }
+
       a{
         text-align: center;
+        text-decoration: none;
+        color: #3F3A6B;
       }
 
       #mon-email{
@@ -44,7 +54,7 @@
         justify-content: center;
         padding: 10px;
         gap: 5px;
-        background-color: #3F3A6B;
+        background: linear-gradient(-90deg, #7A76A3, #3F3A6B);
         color: white;
         border-radius: 10px;
         font-size: 20px;
@@ -56,11 +66,12 @@
       flex-direction: column;
       width: 100%;
       height: min-content;
-      aspect-ratio: 14/19;
+      //aspect-ratio: 14/19;
       gap: 20px;
       padding: 20px;
       background-color: rgba(255, 255, 255, 0.58);
       box-sizing: border-box;
+      border-radius: 30px;
 
       #corp{
         display: flex;
@@ -83,6 +94,8 @@
         border-radius: 20px;
         font-size: 20px;
         width: 100%;
+        border: 0;
+        box-shadow: inset 0px 2px 4px 0px rgba(29, 27, 49, 0.25);
 
         &::placeholder{
           font-size: 20px;
@@ -90,7 +103,17 @@
       }
 
       textarea{
+        resize: none;
         min-height: 120px;
+      }
+
+      button{
+        background-color: #3F3A6B;
+        padding: 10px 20px;
+        box-sizing: border-box;
+        color: white;
+        font-size: 16px;
+        font-weight: bold;
       }
 
     }
