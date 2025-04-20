@@ -1,6 +1,5 @@
 <div class="page-content">
   <h1>Contact</h1>
-
   <ng-container *ngIf="profile$ | async as profile">
     <div class="liens-externes">
       <div *ngIf="profile.email">
@@ -21,14 +20,12 @@
   </ng-container>
 
   <form [formGroup]="emailForm" (ngSubmit)="sendEmail($event)">
-    <div>
-      <input type="text" id="nom" formControlName="nom" name="nom" placeholder="Nom" required>
-      <input type="text" id="prenom" formControlName="prenom" name="prenom" placeholder="Prenom" required>
-    </div>
-    <div>
+    <div id="corp">
+      <div id="nom-prenom">
+        <input type="text" id="nom" formControlName="nom" name="nom" placeholder="Nom" required>
+        <input type="text" id="prenom" formControlName="prenom" name="prenom" placeholder="Prenom" required>
+      </div>
       <input type="email" id="email" formControlName="email" name="email" placeholder="Email" required>
-    </div>
-    <div>
       <textarea id="message" formControlName="message" name="message" placeholder="Message" required></textarea>
     </div>
     <button type="submit" [disabled]="emailForm.invalid">Envoyer</button>
