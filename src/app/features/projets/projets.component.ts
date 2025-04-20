@@ -15,28 +15,7 @@ import { Observable } from 'rxjs';
     NgIf,
     AsyncPipe
   ],
-  template: `
-    <div class="page-content">
-      <ng-container *ngIf="isLoading$ | async">
-        <div class="loading">Chargement des projets...</div>
-      </ng-container>
-
-      <ng-container *ngIf="(projets$ | async) as projets">
-        <div *ngIf="projets.length === 0 && !(isLoading$ | async)" class="no-data">
-          Aucun projet disponible pour le moment.
-        </div>
-
-        <div *ngFor="let projet of sortProjets(projets)" class="card">
-          <h3>{{projet.titre}}</h3>
-          <p>{{projet.description}}</p>
-          <button
-            *ngIf="projet.articles.data.length !== 0"
-            (click)="openArticle(projet.articles.data[0].id)"
-          >Voir le projet</button>
-        </div>
-      </ng-container>
-    </div>
-  `,
+  templateUrl: './projets.component.html',
   styleUrl: './projets.component.scss'
 })
 export class ProjetsComponent {

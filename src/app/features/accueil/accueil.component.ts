@@ -15,26 +15,7 @@ import { StrapiFile } from '../../core/models/strapi/file.model';
     NgIf,
     AsyncPipe
   ],
-  template: `
-    <div class="page-content">
-      <div class="heading">
-        <img
-          *ngIf="(files$ | async)?.length"
-          [src]="getFileUrl('logo.svg')"
-          alt="Logo">
-        <h2>{{ (profile$ | async)?.statut }}</h2>
-      </div>
-
-      <div>
-        <markdown [data]="(profile$ | async)?.descriptionAccueil"></markdown>
-
-        <p>
-          J'ai piqué votre curiosité, aller voir
-          <u class="link" (click)="pageServices.goTo('projets')">mes projets</u>
-        </p>
-      </div>
-    </div>
-  `,
+  templateUrl: './accueil.component.html',
   styleUrl: './accueil.component.scss'
 })
 export class AccueilComponent {

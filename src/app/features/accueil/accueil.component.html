@@ -1,15 +1,18 @@
 <div class="page-content">
   <div class="heading">
-    <img *ngIf="files" [src]="fileService.getFile('logo.svg')" alt="Logo">
-    <h2>{{profile?.statut}}</h2>
+    <img
+      *ngIf="(files$ | async)?.length"
+      [src]="getFileUrl('logo.svg')"
+      alt="Logo">
+    <h2>{{ (profile$ | async)?.statut }}</h2>
   </div>
 
   <div>
-    <markdown [data]="profile?.descriptionAccueil"></markdown>
+    <markdown [data]="(profile$ | async)?.descriptionAccueil"></markdown>
 
     <p>
       J'ai piqué votre curiosité, aller voir
-      <u class="link" (click)="pageServices.goTo('projets')" >mes projets</u>
+      <u class="link" (click)="pageServices.goTo('projets')">mes projets</u>
     </p>
   </div>
 </div>

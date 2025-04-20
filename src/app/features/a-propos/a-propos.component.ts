@@ -19,16 +19,7 @@ import { Profile } from '../../core/models/strapi/singleType/profile.model';
     NgIf,
     AsyncPipe
   ],
-  template: `
-    <ng-container *ngIf="isLoading$ | async">
-      <div class="loading">Chargement des informations...</div>
-    </ng-container>
-
-    <ng-container *ngIf="profile$ | async as profile">
-      <markdown [data]="profile.descriptionAPropos"></markdown>
-      <button *ngIf="cvUrl$ | async" (click)="openPDF()">Voir mon CV</button>
-    </ng-container>
-  `,
+  templateUrl: './a-propos.component.html',
   styleUrl: './a-propos.component.scss'
 })
 export class AProposComponent {
