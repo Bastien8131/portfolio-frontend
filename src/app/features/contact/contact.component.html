@@ -1,21 +1,24 @@
 <div class="page-content">
   <h1>Contact</h1>
-  <div class="liens-externes">
-    <div>
-      <h2>email</h2>
-      <div id="mon-email">
+  <ng-container *ngIf="profile$ | async as profile">
+    <div class="liens-externes">
+      <div *ngIf="profile.email">
+        <h2>email</h2>
         <a href="mailto:{{profile.email}}">{{profile.email}}</a>
       </div>
-    </div>
-    <div>
-      <h2>reseau</h2>
-      <div id="web">
-        <ng-container *ngFor="let lien of getLiens()">
-          <a class="btn-lien-ext" [href]="lien.url">{{lien.nom}}</a>
+
+      <div *ngIf="liens$ | async as liens">
+        <h2>reseau</h2>
+        <ng-container *ngFor="let lien of liens">
+          <a [href]="lien.url" target="_blank">
+            <img [src]="getFileUrl(lien.logo.data.attributes.name)" alt="">
+            {{lien.nom}}
+          </a>
         </ng-container>
       </div>
     </div>
-  </div>
+  </ng-container>
+
   <form [formGroup]="emailForm" (ngSubmit)="sendEmail($event)">
     <div id="corp">
       <div id="nom-prenom">
@@ -25,6 +28,6 @@
       <input type="email" id="email" formControlName="email" name="email" placeholder="Email" required>
       <textarea id="message" formControlName="message" name="message" placeholder="Message" required></textarea>
     </div>
-    <button type="submit">Envoyer</button>
+    <button type="submit" [disabled]="emailForm.invalid">Envoyer</button>
   </form>
 </div>
