@@ -2,19 +2,21 @@
   <h1>Contact</h1>
   <ng-container *ngIf="profile$ | async as profile">
     <div class="liens-externes">
-      <div *ngIf="profile.email">
+      <div id="mon-email" *ngIf="profile.email">
         <h2>email</h2>
         <a href="mailto:{{profile.email}}">{{profile.email}}</a>
       </div>
 
       <div *ngIf="liens$ | async as liens">
         <h2>reseau</h2>
-        <ng-container *ngFor="let lien of liens">
-          <a [href]="lien.url" target="_blank">
-            <img [src]="getFileUrl(lien.logo.data.attributes.name)" alt="">
-            {{lien.nom}}
-          </a>
-        </ng-container>
+        <div id="web">
+          <ng-container *ngFor="let lien of liens">
+            <a class="btn-lien-ext" [href]="lien.url" target="_blank">
+              <img [src]="getFileUrl(lien.logo.data.attributes.name)" alt="">
+              {{lien.nom}}
+            </a>
+          </ng-container>
+        </div>
       </div>
     </div>
   </ng-container>
