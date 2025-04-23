@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
-import { environment } from '../../environments/environment';
+import { environment } from '../../../../environments/environment';
 import {map, Observable} from 'rxjs';
 import {StrapiData, StrapiRoot} from '../../models/strapi/strapi.model';
 import {StrapiFile} from '../../models/strapi/file.model';
