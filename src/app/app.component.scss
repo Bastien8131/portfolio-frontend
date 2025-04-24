@@ -1,26 +1,48 @@
-#navbar{
-  display: flex;
-  justify-content: center;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  padding: 20px 20px;
-  box-sizing: border-box;
-}
+@import "shared/styles/breakpoints";
 
+:host ::ng-deep {
 
+  #navbar{
+    display: flex;
+    //justify-content: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 20px 40px;
+    box-sizing: border-box;
 
-:host ::ng-deep .header-less-tabs{
-  .splide__slide {
-    height: 100vh;
-    overflow: scroll;
-    padding: 60px 40px 100px;
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none;  /* IE 10+ */
-    // hidde scroll bar
-    ::-webkit-scrollbar {
-      width: 0px;
-      background: transparent; /* make scrollbar transparent */
+    app-navbar{
+      width: 100%;
+    }
+  }
+
+  .header-less-tabs {
+    .splide__slide {
+      display: flex;
+      justify-content: center;
+      height: 100vh;
+      overflow: scroll;
+      padding: 60px 40px 100px;
+      scrollbar-width: none; /* Firefox */
+      -ms-overflow-style: none; /* IE 10+ */
+      // hidde scroll bar
+      ::-webkit-scrollbar {
+        width: 0px;
+        background: transparent; /* make scrollbar transparent */
+      }
+    }
+  }
+
+  @include md-up{
+    #navbar{
+      bottom: initial;
+      top: 0;
+    }
+
+    .header-less-tabs {
+      .splide__slide {
+        padding: 20vh 40px 0;
+      }
     }
   }
 }

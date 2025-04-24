@@ -1,18 +1,17 @@
 // app.component.ts
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatTabsModule } from '@angular/material/tabs';
 import { FormsModule } from '@angular/forms';
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
-import {Page} from './core/models/page.model';
-import {PageService} from './core/services/page.service';
-import {ProfileStrapiService} from './core/services/strapi/profile.strapi.service';
-import {AccueilComponent} from './features/accueil/accueil.component';
-import {NgxSplideModule} from 'ngx-splide';
-import {SplideOptions} from './core/models/splide-options';
-import {FilesStrapiService} from './core/services/strapi/files.strapi.service';
-import {ProjetsStrapiService} from './core/services/strapi/projets.strapi.service';
-import {ArticleStrapiService} from './core/services/strapi/article.strapi.service';
+import { Page } from './core/models/page.model';
+import { PageService } from './core/services/page.service';
+import { NgxSplideModule } from 'ngx-splide';
+import { SplideOptions } from './core/models/splide-options';
+import { DataStoreService } from './core/services/store/data-store.service';
+import {Observable} from 'rxjs';
+import {LoaderComponent} from './shared/components/loader/loader.component';
+import {ErrorMessageComponent} from './shared/components/error-message/error-message.component';
 
 @Component({
   selector: 'app-root',
@@ -23,36 +22,35 @@ import {ArticleStrapiService} from './core/services/strapi/article.strapi.servic
     FormsModule,
     NavbarComponent,
     NgxSplideModule,
+    LoaderComponent,
+    ErrorMessageComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
 export class AppComponent implements OnInit {
   pages: Page[] = [];
-  selectedPageIndex = 0;
   options!: SplideOptions;
   title!: 'portfolio-frontend';
+  isLoading$!: Observable<boolean>;
 
   constructor(
     protected pageService: PageService,
-    private profileService: ProfileStrapiService,
-    private filesService: FilesStrapiService,
-    private projetsService: ProjetsStrapiService,
-    private articleService: ArticleStrapiService,
+    private dataStore: DataStoreService
   ) {}
 
   ngOnInit(): void {
+    this.isLoading$ = this.dataStore.isLoading$; // Initialisation ici
     this.pages = this.pageService.pages;
-    this.profileService.loadProfile();
-    this.filesService.loadFiles();
-    this.projetsService.loadProjets();
-    // this.articleService.loadArticles();
+
+    // Load all data from Strapi
+    this.dataStore.loadAllData();
 
     this.options = {
       speed: 750,
       arrows: false,
       pagination: false,
       drag: false,
-    }
+    };
   }
 }
