@@ -1,7 +1,40 @@
 .page-content{
   width: 100%;
-  aspect-ratio: 9/16;
+  aspect-ratio: 1/1.414;
   overflow: scroll;
   padding: 40px;
   box-sizing: border-box;
+
+  header{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    &>*{
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      text-align: center;
+    }
+
+    h1{
+      font-size: 32px;
+      color: #3F3A6B;
+    }
+
+    sub{
+      font-size: 10px;
+      color: black;
+    }
+
+  }
+
+
+  markdown ::ng-deep {
+    p img{
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+    }
+  }
 }

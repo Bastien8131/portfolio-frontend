@@ -26,4 +26,12 @@ export class DialogArticleComponent implements OnInit {
     console.log('test', this.article);
   }
 
+  // La fonction n'est pas idéal, crée une autre dans un services qui prend en paramètre un datetime et un format. Et renvoie une date au format souhaité
+  getYear(datetime: string) {
+    if (!datetime) {
+      return '';
+    }
+    const date = new Date(datetime);
+    return date.getFullYear().toString();
+  }
 }
