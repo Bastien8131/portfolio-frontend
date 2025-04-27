@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Projet } from '../../core/models/strapi/collectionType/projet.model';
-import { AsyncPipe, NgForOf, NgIf } from '@angular/common';
+import {AsyncPipe, NgForOf, NgIf, NgStyle} from '@angular/common';
 import { DialogArticleComponent } from '../../shared/components/dialog-article/dialog-article.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ArticleStrapiService } from '../../core/services/strapi/article.strapi.service';
@@ -13,7 +13,8 @@ import { Observable } from 'rxjs';
   imports: [
     NgForOf,
     NgIf,
-    AsyncPipe
+    AsyncPipe,
+    NgStyle
   ],
   templateUrl: './projets.component.html',
   styleUrl: './projets.component.scss'
@@ -24,7 +25,7 @@ export class ProjetsComponent {
   isLoading$: Observable<boolean>;
 
   constructor(
-    private dataStore: DataStoreService,
+    protected dataStore: DataStoreService,
     private articleService: ArticleStrapiService,
     public dialog: MatDialog
   ) {

@@ -9,12 +9,21 @@
     </div>
 
     <div *ngFor="let projet of sortProjets(projets)" class="card">
-      <h3>{{projet.titre}}</h3>
-      <p>{{projet.description}}</p>
-      <button
-        *ngIf="projet.articles.data.length !== 0"
-        (click)="openArticle(projet.articles.data[0].id)"
-      >Voir le projet</button>
+      <div class="top">
+        <h3>{{projet.titre}}</h3>
+        <p>{{projet.description}}</p>
+      </div>
+      <div
+        class="bottom"
+        [ngStyle]="{
+          'background-image': 'url(' + (projet.cover.data ? this.dataStore.getFileByName(projet.cover.data.attributes.name) : '') + ')'
+        }"
+      >
+        <!-- Modifier la condition if qui n'est pas tres optimale -->
+        <div class="linear" *ngIf="projet.articles.data.length !== 0">
+          <button (click)="openArticle(projet.articles.data[0].id)">Voir le projet</button>
+        </div>
+      </div>
     </div>
   </ng-container>
 </div>

@@ -1,7 +1,8 @@
 import {Article} from './article.model';
 import {Technologie} from './technologie.model';
 import {Repositorie} from './repositorie.model';
-import {StrapiRelationList} from '../strapi.model';
+import {StrapiRelation, StrapiRelationList} from '../strapi.model';
+import {StrapiFile} from '../file.model';
 
 export interface Projet {
   titre: string
@@ -15,5 +16,6 @@ export interface Projet {
   articles: StrapiRelationList<Article>
   technologies: StrapiRelationList<Technologie>
   repositories: StrapiRelationList<Repositorie>
+  cover: StrapiRelation<StrapiFile>
   // localizations: Localizations
 }
