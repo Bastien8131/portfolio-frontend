@@ -1,84 +1,346 @@
+@import "../../shared/styles/breakpoints2";
 
+:host ::ng-deep {
+  button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    background-color: white;
+    color: black;
+    border: none;
+    border-radius: 1000px;
+    padding: 8px 16px;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
 
-.page-content{
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-  border-radius: 20px;
-  overflow-y: auto;
-  height: 100%;
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE and Edge */
-
-  &::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Opera */
+    @include bp-768 {
+      padding: 10px 20px;
+      font-size: 14px;
+    }
   }
 
-  .card{
-    width: 100%;
-    max-width: 280px;
-    aspect-ratio: 1/1;
-    border-radius: 20px;
-    color: white;
-    background-color: #423d6e;
-    overflow: hidden;
+  .page-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    border-radius: 15px;
+    overflow-y: scroll;
+    height: 100%;
+    //padding: 10px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 
-    .top{
-      display: flex;
-      flex-direction: column;
-      padding: 20px;
-      gap: 10px;
-      box-sizing: border-box;
-      height: 50%;
-      overflow: hidden;
-
-      h3, p{
-        margin: 0;
-        padding: 0;
-      }
-
-      h3{
-        font-size: 24px;
-        font-weight: bold;
-      }
-
-      p{
-        font-size: 14px;
-        font-weight: normal;
-      }
+    &::-webkit-scrollbar {
+      display: none;
     }
 
-    .bottom{
-      display: flex;
-      justify-content: end;
-      align-items: end;
-      height: 50%;
+    @include bp-480 {
+      gap: 20px;
+      border-radius: 20px;
+    }
+
+    @include bp-768 {
+      justify-content: space-between;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(280px, 1fr));
+      height: initial;
+      overflow: initial;
+    }
+
+    @include bp-1024 {
+      gap: 20px;
+      grid-template-columns: repeat(3, minmax(280px, 1fr));
+    }
+
+    .card {
+      position: relative;
+      width: 280px;
+      aspect-ratio: 1/1;
+      border-radius: 20px;
+      color: white;
+      background: linear-gradient(to top, #7A76A3, #3F3A6B);
       overflow: hidden;
 
-      .linear{
-        display: flex;
-        justify-content: end;
-        align-items: end;
+      // Tablet
+      @include bp-768 {
         width: 100%;
-        height: 100%;
-        background: linear-gradient(135deg, #0000 10%, #272536);
-        padding: 20px;
+        border-radius: 20px;
 
-        button{
+        // Show button on tablet and larger
+        .top button {
           display: flex;
-          justify-content: center;
-          align-items: center;
+        }
+      }
+
+      // Desktop
+      @include bp-1280 {
+        &:hover {
+          transform: translateY(-5px);
+          transition: transform 0.3s ease;
+          box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+
+          .top {
+            opacity: 1;
+          }
+
+          .bottom{
+
+          }
+        }
+      }
+
+      // Large screens
+      @include bp-1440 {
+        //width: 470px;
+      }
+
+      .top {
+        display: flex;
+        flex-direction: column;
+        padding: 15px;
+        gap: 8px;
+        box-sizing: border-box;
+        height: 50%;
+
+        @include bp-768 {
+          padding: 20px;
+        }
+
+        @include bp-1280 {
+          padding: 30px;
           gap: 10px;
-          background-color: white;
-          color: black;
-          border: none;
-          border-radius: 1000px;
-          padding: 10px 20px;
-          font-size: 14px;
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          opacity: 0;
+          background: linear-gradient(to top, #0000, rgba(63, 58, 107, 0.8) 50%, rgba(63, 58, 107, 0.9) 60%, #3F3A6B);
+          backdrop-filter: blur(10px);
+          transition: all 0.3s ease;
+        }
+
+        @include bp-1440 {
+          padding: 40px;
+        }
+
+        h3, p {
+          margin: 0;
+          padding: 0;
+        }
+
+        h3 {
+          visibility: visible;
+          font-size: 24px;
           font-weight: bold;
-          //font-family: ;
-          cursor: pointer;
+
+          @include bp-480 {
+            font-size: 20px;
+          }
+
+          @include bp-768 {
+            font-size: 24px;
+          }
+
+          @include bp-960 {
+            font-size: 28px;
+          }
+
+          @include bp-1024{
+            font-size: 32px;
+          }
+
+          @include bp-1280 {
+            font-size: 34px;
+          }
+
+          @include bp-1440 {
+            font-size: 36px;
+          }
+        }
+
+        p {
+          font-size: 14px;
+          font-weight: normal;
+
+          @include bp-480 {
+            font-size: 13px;
+          }
+
+          @include bp-1280 {
+            font-size: 16px;
+          }
+
+          @include bp-1440 {
+            font-size: 20px;
+          }
+        }
+
+        button {
+          display: none;
+          width: max-content;
+          font-size: 11px;
+          padding: 6px 12px;
+
+          @include bp-768{
+          }
+
+          @include bp-1024(){
+            font-size: 14px;
+            padding: 8px 20px;
+            margin-top: 5px;
+          }
+
+          @include bp-1280 {
+            display: block;
+            font-size: 16px;
+            padding: 10px 30px;
+            margin-top: 10px;
+          }
+        }
+      }
+
+      .bottom {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 50%;
+        overflow: hidden;
+        box-sizing: border-box;
+        background-size: cover;
+        background-position: center;
+
+        h3 {
+          display: none;
+          visibility: hidden;
+          font-size: 18px;
+          font-weight: bold;
+          margin: 0;
+          padding: 20px;
+          box-sizing: border-box;
+          //position: relative;
+          //z-index: 2;
+          background: linear-gradient(to top, #0000, rgba(63, 58, 107, 0.8) 50%, rgba(63, 58, 107, 0.9) 60%, #3F3A6B);
+
+          @include bp-480 {
+            font-size: 20px;
+          }
+
+          @include bp-768 {
+            font-size: 24px;
+          }
+
+          @include bp-960 {
+            font-size: 28px;
+          }
+
+          @include bp-1024{
+            font-size: 32px;
+          }
+
+          @include bp-1280 {
+            display: block;
+            visibility: visible;
+            padding: 30px;
+            font-size: 34px;
+          }
+
+          @include bp-1440 {
+            font-size: 36px;
+            padding: 40px;
+          }
+        }
+
+        @include bp-1280{
+          height: 100%;
+        }
+
+        .info {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          //margin-top: 100%;
+          width: 100%;
+          padding: 20px;
+          box-sizing: border-box;
+          font-size: 12px;
+          position: absolute;
+          bottom: 0;
+          z-index: 1;
+
+          @include bp-768{
+          }
+
+          @include bp-1024 {
+            padding: 30px;
+          }
+
+          @include bp-1280 {
+            font-size: 14px;
+          }
+
+          @include bp-1440 {
+            padding: 40px;
+          }
+        }
+
+        .techno {
+          display: none;
+          gap: 10px;
+
+          @include bp-768{
+          }
+
+          @include bp-1280 {
+            display: flex;
+            span {
+              background-color: white;
+              color: black;
+              padding: 3px 8px;
+              border-radius: 5px;
+              font-size: 10px;
+            }
+          }
+
+          @include bp-1024 {
+            span {
+              font-size: 12px;
+            }
+          }
+
+          @include bp-1280 {
+            span {
+              font-size: 14px;
+            }
+          }
+        }
+
+        .linear {
+          display: flex;
+          justify-content: end;
+          align-items: end;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(135deg, #0000 10%, #272536);
+          padding: 15px;
+          box-sizing: border-box;
+
+          button{
+            position: relative;
+            z-index: 2;
+          }
+
+          @include bp-768 {
+          }
+
+          @include bp-1280{
+            display: none;
+            //padding: 20px;
+            //background-color: initial;
+            //justify-content: start;
+            //align-items: start;
+          }
         }
       }
     }

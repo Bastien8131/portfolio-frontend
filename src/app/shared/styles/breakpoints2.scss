@@ -1,0 +1,78 @@
+
+
+// Phone breakpoints
+@mixin bp-320 {
+  @media (min-width: 320px) { @content; }
+}
+
+@mixin bp-375 {
+  @media (min-width: 375px) { @content; }
+}
+
+@mixin bp-400 {
+  @media (min-width: 400px) { @content; }
+}
+
+@mixin bp-425 {
+  @media (min-width: 425px) { @content; }
+}
+
+@mixin bp-480 {
+  @media (min-width: 480px) { @content; }
+}
+
+// Tablet breakpoints
+@mixin bp-700 {
+  @media (min-width: 700px) { @content; }
+}
+
+@mixin bp-768 {
+  @media (min-width: 768px) { @content; }
+}
+
+@mixin bp-960 {
+  @media (min-width: 960px) { @content; }
+}
+
+// Desktop breakpoints
+@mixin bp-1024 {
+  @media (min-width: 1024px) { @content; }
+}
+
+@mixin bp-1280 {
+  @media (min-width: 1280px) { @content; }
+}
+
+@mixin bp-1366 {
+  @media (min-width: 1366px) { @content; }
+}
+
+@mixin bp-1440 {
+  @media (min-width: 1440px) { @content; }
+}
+
+// Large screens breakpoints
+@mixin bp-1600 {
+  @media (min-width: 1600px) { @content; }
+}
+
+@mixin bp-1920 {
+  @media (min-width: 1920px) { @content; }
+}
+
+@mixin bp-2560 {
+  @media (min-width: 2560px) { @content; }
+}
+
+@mixin bp-3840 {
+  @media (min-width: 3840px) { @content; }
+}
+
+// Orientation screen breakpoints
+@mixin bp-portrait {
+  @media (orientation: portrait) { @content; }
+}
+
+@mixin bp-landscape {
+  @media (orientation: landscape) { @content; }
+}
