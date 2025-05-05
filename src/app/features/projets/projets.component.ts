@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Projet } from '../../core/models/strapi/collectionType/projet.model';
-import {AsyncPipe, NgForOf, NgIf, NgStyle} from '@angular/common';
+import {AsyncPipe, DatePipe, NgForOf, NgIf, NgStyle} from '@angular/common';
 import { DialogArticleComponent } from '../../shared/components/dialog-article/dialog-article.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ArticleStrapiService } from '../../core/services/strapi/article.strapi.service';
@@ -14,7 +14,8 @@ import { Observable } from 'rxjs';
     NgForOf,
     NgIf,
     AsyncPipe,
-    NgStyle
+    NgStyle,
+    DatePipe
   ],
   templateUrl: './projets.component.html',
   styleUrl: './projets.component.scss'
@@ -38,7 +39,10 @@ export class ProjetsComponent {
     const article = await this.articleService.get(id);
 
     const dialogRef = this.dialog.open(DialogArticleComponent, {
-      data: { article: article }
+      data: { article: article },
+      maxWidth: '90vw',
+      maxHeight: '90vh',
+      panelClass: 'article-dialog'
     });
 
     dialogRef.afterClosed().subscribe(result => {
