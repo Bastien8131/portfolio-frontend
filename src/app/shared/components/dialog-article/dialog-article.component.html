@@ -1,7 +1,7 @@
 <div class="page-content">
   <header>
     <h1>{{ article.titre }}</h1>
-    <sub>{{ article.type }} • {{ getYear(article.updatedAt) }}</sub>
+    <sub>{{ article.type }} • {{ article.updatedAt | date:'yyyy' }}</sub>
     <!--  <p>Created At: {{ article.createdAt }}</p>-->
     <!--  <p>Updated At: {{ article.updatedAt }}</p>-->
     <!--  <p>Published At: {{ article.publishedAt }}</p>-->
