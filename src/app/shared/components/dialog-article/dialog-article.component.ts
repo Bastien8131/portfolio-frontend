@@ -24,7 +24,5 @@ export class DialogArticleComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.data);
-    console.log('test', this.article);
   }
 }

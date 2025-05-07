@@ -6,6 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ArticleStrapiService } from '../../core/services/strapi/article.strapi.service';
 import { DataStoreService } from '../../core/services/store/data-store.service';
 import { Observable } from 'rxjs';
+import {FileUrlPipe} from '../../shared/pipe/file-url.pipe';
 
 @Component({
   selector: 'app-projets',
@@ -15,7 +16,8 @@ import { Observable } from 'rxjs';
     NgIf,
     AsyncPipe,
     NgStyle,
-    DatePipe
+    DatePipe,
+    FileUrlPipe
   ],
   templateUrl: './projets.component.html',
   styleUrl: './projets.component.scss'
