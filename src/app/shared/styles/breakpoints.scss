@@ -1,87 +1,78 @@
-// A SUPPRIMER
 
-@mixin mobile {
-  @media (max-width: 767px) { @content; }
+
+// Phone breakpoints
+@mixin bp-320 {
+  @media (min-width: 320px) { @content; }
 }
 
-@mixin tablet {
-  @media (min-width: 768px) and (max-width: 1023px) { @content; }
+@mixin bp-375 {
+  @media (min-width: 375px) { @content; }
 }
 
-@mixin desktop {
-  @media (min-width: 1024px) { @content; }
+@mixin bp-400 {
+  @media (min-width: 400px) { @content; }
 }
 
-@mixin hd {
-  @media (min-width: 1280px) { @content; }
+@mixin bp-425 {
+  @media (min-width: 425px) { @content; }
 }
 
-@mixin fullhd {
-  @media (min-width: 1920px) { @content; }
+@mixin bp-480 {
+  @media (min-width: 480px) { @content; }
 }
 
-@mixin xs {
-  @media (max-width: 575px) { @content; }
+// Tablet breakpoints
+@mixin bp-700 {
+  @media (min-width: 700px) { @content; }
 }
 
-@mixin sm {
-  @media (min-width: 576px) and (max-width: 767px) { @content; }
-}
-
-@mixin md {
-  @media (min-width: 768px) and (max-width: 991px) { @content; }
-}
-
-@mixin lg {
-  @media (min-width: 992px) and (max-width: 1199px) { @content; }
-}
-
-@mixin xl {
-  @media (min-width: 1200px) and (max-width: 1399px) { @content; }
-}
-
-@mixin xxl {
-  @media (min-width: 1400px) { @content; }
-}
-
-@mixin sm-up {
-  @media (min-width: 576px) { @content; }
-}
-
-@mixin md-up {
+@mixin bp-768 {
   @media (min-width: 768px) { @content; }
 }
 
-@mixin lg-up {
-  @media (min-width: 992px) { @content; }
+@mixin bp-960 {
+  @media (min-width: 960px) { @content; }
 }
 
-@mixin xl-up {
-  @media (min-width: 1200px) { @content; }
+// Desktop breakpoints
+@mixin bp-1024 {
+  @media (min-width: 1024px) { @content; }
 }
 
-@mixin xxl-up {
-  @media (min-width: 1400px) { @content; }
+@mixin bp-1280 {
+  @media (min-width: 1280px) { @content; }
 }
 
-@mixin xxxl-up {
-  @media (min-width: 1700px) { @content; }
+@mixin bp-1366 {
+  @media (min-width: 1366px) { @content; }
 }
 
-@mixin sm-down {
-  @media (max-width: 767px) { @content; }
+@mixin bp-1440 {
+  @media (min-width: 1440px) { @content; }
 }
 
-@mixin md-down {
-  @media (max-width: 991px) { @content; }
+// Large screens breakpoints
+@mixin bp-1600 {
+  @media (min-width: 1600px) { @content; }
 }
 
-@mixin lg-down {
-  @media (max-width: 1199px) { @content; }
+@mixin bp-1920 {
+  @media (min-width: 1920px) { @content; }
 }
 
-@mixin xl-down {
-  @media (max-width: 1399px) { @content; }
+@mixin bp-2560 {
+  @media (min-width: 2560px) { @content; }
 }
 
+@mixin bp-3840 {
+  @media (min-width: 3840px) { @content; }
+}
 
+// Orientation screen breakpoints
+@mixin bp-portrait {
+  @media (orientation: portrait) { @content; }
+}
+
+@mixin bp-landscape {
+  @media (orientation: landscape) { @content; }
+}

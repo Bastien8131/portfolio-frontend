@@ -37,7 +37,7 @@
     }
   }
 
-  @include md-up{
+  @include bp-1440{
     #navbar{
       bottom: initial;
       top: 0;
