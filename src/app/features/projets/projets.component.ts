@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { Projet } from '../../core/models/strapi/collectionType/projet.model';
-import { AsyncPipe, NgForOf, NgIf } from '@angular/common';
+import {AsyncPipe, DatePipe, NgForOf, NgIf, NgStyle} from '@angular/common';
 import { DialogArticleComponent } from '../../shared/components/dialog-article/dialog-article.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ArticleStrapiService } from '../../core/services/strapi/article.strapi.service';
 import { DataStoreService } from '../../core/services/store/data-store.service';
 import { Observable } from 'rxjs';
+import {FileUrlPipe} from '../../shared/pipe/file-url.pipe';
 
 @Component({
   selector: 'app-projets',
@@ -13,7 +14,10 @@ import { Observable } from 'rxjs';
   imports: [
     NgForOf,
     NgIf,
-    AsyncPipe
+    AsyncPipe,
+    NgStyle,
+    DatePipe,
+    FileUrlPipe
   ],
   templateUrl: './projets.component.html',
   styleUrl: './projets.component.scss'
@@ -24,7 +28,7 @@ export class ProjetsComponent {
   isLoading$: Observable<boolean>;
 
   constructor(
-    private dataStore: DataStoreService,
+    protected dataStore: DataStoreService,
     private articleService: ArticleStrapiService,
     public dialog: MatDialog
   ) {
@@ -37,7 +41,10 @@ export class ProjetsComponent {
     const article = await this.articleService.get(id);
 
     const dialogRef = this.dialog.open(DialogArticleComponent, {
-      data: { article: article }
+      data: { article: article },
+      maxWidth: '90vw',
+      maxHeight: '90vh',
+      panelClass: 'article-dialog'
     });
 
     dialogRef.afterClosed().subscribe(result => {

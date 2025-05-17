@@ -347,7 +347,7 @@ export class DataStoreService {
 
     if (file.ext === '.svg') return environment.strapiUrl + file.url;
 
-    return environment.strapiUrl + (file.formats?.thumbnail?.url || file.url);
+    return environment.strapiUrl + (file.formats.thumbnail.url || file.url);
   }
 
   // Get current state snapshot

@@ -22,7 +22,7 @@ body {
   font-family: "Bricolage Grotesque", sans-serif;
 }
 
-p, input, textarea{
+p, input, textarea, ul, li, table, th, td {
   font-family: Corbel, "Rubik", sans-serif;
   font-variant-numeric: lining-nums;
   font-weight: 400;
@@ -44,5 +44,14 @@ input {
     font-variant-numeric: lining-nums;
     font-weight: 400;
     font-size: 16px;
+  }
+}
+
+.article-dialog .mat-mdc-dialog-container {
+  overflow: hidden;
+
+  @media (orientation: landscape) {
+    width: auto;
+    max-width: 80vw;
   }
 }
