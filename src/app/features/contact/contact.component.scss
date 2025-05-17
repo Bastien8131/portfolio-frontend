@@ -1,0 +1,438 @@
+@import "../../shared/styles/breakpoints2";
+
+:host ::ng-deep {
+
+  .page-content{
+
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background: rgba(63, 58, 107, 0.06);
+
+    @include bp-768(){
+      padding: 0 50px;
+    }
+
+    @include bp-1024{
+      padding: 0 100px;
+    }
+
+    @include bp-1280{
+      gap: 30px;
+      padding: 0 150px;
+    }
+
+    @include bp-1366{
+      padding: 0 200px;
+    }
+
+    @include bp-1440{
+      gap: 40px;
+      padding: 0 210px;
+    }
+
+    @include bp-1600{
+      padding: 0 220px;
+    }
+
+    @include bp-1920{
+      padding: 0 230px;
+    }
+
+    h1{
+      font-size: 32px;
+      margin: 0;
+      color: #3F3A6B;
+
+      @include bp-768{
+        font-size: 42px;
+      }
+
+      @include bp-1024{
+        font-size: 52px;
+      }
+
+      @include bp-1280{
+        font-size: 56px;
+      }
+
+      @include bp-1440{
+        font-size: 64px;
+      }
+    }
+
+    main{
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+
+      @include bp-landscape{
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: start;
+      }
+
+      h2{
+        font-size: 20px;
+        text-transform: uppercase;
+        margin: 0;
+
+        @include bp-768{
+          font-size: 24px;
+        }
+
+        @include bp-1024{
+          font-size: 28px;
+        }
+
+        @include bp-1280{
+          font-size: 32px;
+        }
+
+        @include bp-1440{
+          font-size: 36px;
+        }
+      }
+
+      #liens-externes{
+
+        @include bp-768{
+          width: 50%;
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+        }
+
+        @include bp-1024{
+          gap: 30px;
+        }
+
+        @include bp-1280{
+          gap: 30px;
+        }
+
+        @include bp-1440{
+          gap: 60px;
+        }
+
+        >div{
+          display: flex;
+          flex-direction: column;
+          gap: 5px;
+        }
+
+        a{
+          text-align: center;
+          text-decoration: none;
+          color: #3F3A6B;
+
+          @include bp-768{
+            text-align: left;
+          }
+        }
+
+        #email{
+          display: flex;
+          justify-content: center;
+          width: 100%;
+          padding: 10px 0;
+          font-size: larger;
+          gap: 5px;
+
+          a{
+            @include bp-768{
+              font-size: 20px;
+            }
+
+            @include bp-1024{
+              font-size: 24px;
+            }
+
+            @include bp-1280{
+              font-size: 28px;
+            }
+
+            @include bp-1440{
+              font-size: 32px;
+            }
+          }
+        }
+
+        #web{
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          gap: 10px;
+
+          >div{
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+            padding: 10px 0;
+            font-size: larger;
+
+            @include bp-768{
+              justify-content: flex-start;
+            }
+
+            a{
+              width: 100%;
+              display: flex;
+              justify-content: center;
+              padding: 10px;
+              gap: 5px;
+              background: linear-gradient(-90deg, #7A76A3, #3F3A6B);
+              color: white;
+              border-radius: 10px;
+              font-size: 20px;
+              box-sizing: border-box;
+
+              @include bp-768{
+                width: min-content;
+                padding: 10px 15px;
+                font-size: 24px;
+              }
+
+              @include bp-1024{
+                padding: 10px 25px;
+                font-size: 28px;
+              }
+
+              @include bp-1280{
+                font-size: 30px;
+              }
+
+              @include bp-1440{
+                gap: 10px;
+                font-size: 32px;
+              }
+            }
+          }
+        }
+
+        #info{
+          display: none;
+          flex-direction: column;
+          gap: 20px;
+
+          #temps-reponse{
+            display: none;
+
+            @include bp-1024{
+              display: block;
+            }
+          }
+
+          div{
+            display: flex;
+            gap: 5px;
+            font-size: larger;
+
+            p{
+              margin: 0;
+              font-size: 20px;
+
+              @include bp-768{
+                font-size: 22px;
+              }
+
+              @include bp-1024{
+                font-size: 24px;
+              }
+
+              @include bp-1280{
+                font-size: 28px;
+              }
+
+              @include bp-1440{
+                font-size: 32px;
+              }
+            }
+          }
+
+          @include bp-768{
+            display: flex;
+          }
+        }
+      }
+
+
+
+      #form-contact{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: min-content;
+        gap: 20px;
+        padding: 20px;
+        background-color: rgba(255, 255, 255, 0.58);
+        box-sizing: border-box;
+        border-radius: 30px;
+        max-width: 600px;
+        aspect-ratio: 1/1;
+
+        @include bp-768{
+          width: 50%;
+          padding: 25px;
+          border-radius: 40px;
+        }
+
+        @include bp-1024{
+          padding: 30px;
+          border-radius: 50px;
+        }
+
+        @include bp-1440{
+          padding: 40px;
+          border-radius: 70px;
+        }
+
+        form{
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          height: 100%;
+
+          @include bp-768{
+            gap: 20px;
+          }
+
+          @include bp-1024{
+            gap: 30px;
+          }
+
+          @include bp-1440{
+            gap: 40px;
+          }
+
+          #corp{
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            height: 100%;
+
+            #identite-contact{
+              display: flex;
+              gap: 20px;
+
+              input{
+                width: 100%;
+              }
+            }
+          }
+
+          input, textarea, button{
+            padding: 5px 20px;
+            box-sizing: border-box;
+            border-radius: 20px;
+            font-size: 20px;
+            width: 100%;
+            border: 0;
+            box-shadow: inset 0px 2px 4px 0px rgba(29, 27, 49, 0.25);
+
+            @include bp-768{
+              padding: 10px 20px;
+              font-size: 20px;
+              border-radius: 20px;
+            }
+
+            @include bp-1024{
+              font-size: 22px;
+              border-radius: 30px;
+            }
+
+            @include bp-1280{
+              font-size: 24px;
+            }
+
+            @include bp-1440{
+              padding: 20px;
+            }
+
+            &::placeholder{
+              font-size: 20px;
+
+              @include bp-768{
+                font-size: 22px;
+              }
+
+              @include bp-1024{
+                font-size: 24px;
+              }
+            }
+          }
+
+          textarea{
+            resize: none;
+            min-height: initial;
+            height: 100%;
+
+            @include bp-768{
+            }
+
+            @include bp-1024{
+            }
+          }
+
+          #input{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+
+            @include bp-768{
+              flex-direction: row;
+            }
+
+
+            button{
+              background-color: #3F3A6B;
+              padding: 10px 20px;
+              box-sizing: border-box;
+              color: white;
+              font-size: 16px;
+              font-weight: bold;
+              cursor: pointer;
+
+              &[type="reset"]{
+                display: none;
+                background: initial;
+                box-shadow: initial;
+                color: black;
+
+                @include bp-768{
+                  display: block;
+                }
+              }
+
+              @include bp-768{
+                width: min-content;
+                padding: 10px 20px;
+              }
+
+              @include bp-1024{
+                border-radius: 20px;
+                font-size: 20px;
+              }
+
+              @include bp-1280{
+                font-size: 22px;
+              }
+
+              @include bp-1440{
+                border-radius: 30px;
+                font-size: 24px;
+              }
+
+
+            }
+          }
+
+        }
+
+
+      }
+    }
+
+  }
+}
