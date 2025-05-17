@@ -6,10 +6,36 @@
 
     display: flex;
     flex-direction: column;
-    gap: 40px;
+    gap: 20px;
     background: rgba(63, 58, 107, 0.06);
 
+    @include bp-768(){
+      padding: 0 50px;
+    }
+
+    @include bp-1024{
+      padding: 0 100px;
+    }
+
     @include bp-1280{
+      gap: 30px;
+      padding: 0 150px;
+    }
+
+    @include bp-1366{
+      padding: 0 200px;
+    }
+
+    @include bp-1440{
+      gap: 40px;
+      padding: 0 210px;
+    }
+
+    @include bp-1600{
+      padding: 0 220px;
+    }
+
+    @include bp-1920{
       padding: 0 230px;
     }
 
@@ -27,6 +53,10 @@
       }
 
       @include bp-1280{
+        font-size: 56px;
+      }
+
+      @include bp-1440{
         font-size: 64px;
       }
     }
@@ -36,7 +66,7 @@
       flex-direction: column;
       gap: 20px;
 
-      @include bp-768{
+      @include bp-landscape{
         flex-direction: row;
         justify-content: space-between;
         align-items: start;
@@ -56,6 +86,10 @@
         }
 
         @include bp-1280{
+          font-size: 32px;
+        }
+
+        @include bp-1440{
           font-size: 36px;
         }
       }
@@ -70,10 +104,14 @@
         }
 
         @include bp-1024{
-          gap: 40px;
+          gap: 30px;
         }
 
         @include bp-1280{
+          gap: 30px;
+        }
+
+        @include bp-1440{
           gap: 60px;
         }
 
@@ -106,7 +144,15 @@
               font-size: 20px;
             }
 
+            @include bp-1024{
+              font-size: 24px;
+            }
+
             @include bp-1280{
+              font-size: 28px;
+            }
+
+            @include bp-1440{
               font-size: 32px;
             }
           }
@@ -148,11 +194,15 @@
               }
 
               @include bp-1024{
+                padding: 10px 25px;
                 font-size: 28px;
               }
 
               @include bp-1280{
-                padding: 10px 25px;
+                font-size: 30px;
+              }
+
+              @include bp-1440{
                 gap: 10px;
                 font-size: 32px;
               }
@@ -165,6 +215,14 @@
           flex-direction: column;
           gap: 20px;
 
+          #temps-reponse{
+            display: none;
+
+            @include bp-1024{
+              display: block;
+            }
+          }
+
           div{
             display: flex;
             gap: 5px;
@@ -174,7 +232,19 @@
               margin: 0;
               font-size: 20px;
 
+              @include bp-768{
+                font-size: 22px;
+              }
+
+              @include bp-1024{
+                font-size: 24px;
+              }
+
               @include bp-1280{
+                font-size: 28px;
+              }
+
+              @include bp-1440{
                 font-size: 32px;
               }
             }
@@ -203,11 +273,16 @@
 
         @include bp-768{
           width: 50%;
+          padding: 25px;
+          border-radius: 40px;
+        }
+
+        @include bp-1024{
           padding: 30px;
           border-radius: 50px;
         }
 
-        @include bp-1024{
+        @include bp-1440{
           padding: 40px;
           border-radius: 70px;
         }
@@ -215,13 +290,18 @@
         form{
           display: flex;
           flex-direction: column;
+          gap: 10px;
           height: 100%;
 
           @include bp-768{
             gap: 20px;
           }
 
-          @include bp-1280{
+          @include bp-1024{
+            gap: 30px;
+          }
+
+          @include bp-1440{
             gap: 40px;
           }
 
@@ -251,34 +331,46 @@
             box-shadow: inset 0px 2px 4px 0px rgba(29, 27, 49, 0.25);
 
             @include bp-768{
-              padding: 20px;
+              padding: 10px 20px;
+              font-size: 20px;
+              border-radius: 20px;
+            }
+
+            @include bp-1024{
+              font-size: 22px;
               border-radius: 30px;
+            }
+
+            @include bp-1280{
+              font-size: 24px;
+            }
+
+            @include bp-1440{
+              padding: 20px;
             }
 
             &::placeholder{
               font-size: 20px;
 
               @include bp-768{
+                font-size: 22px;
+              }
+
+              @include bp-1024{
                 font-size: 24px;
               }
-            }
-
-            @include bp-768{
-              font-size: 24px;
             }
           }
 
           textarea{
             resize: none;
-            min-height: 120px;
+            min-height: initial;
+            height: 100%;
 
             @include bp-768{
-              min-height: 200px;
             }
 
             @include bp-1024{
-              min-height: initial;
-              height: 100%;
             }
           }
 
@@ -320,11 +412,16 @@
 
               @include bp-1024{
                 border-radius: 20px;
-                font-size: 24px;
+                font-size: 20px;
               }
 
               @include bp-1280{
+                font-size: 22px;
+              }
+
+              @include bp-1440{
                 border-radius: 30px;
+                font-size: 24px;
               }
 
 
