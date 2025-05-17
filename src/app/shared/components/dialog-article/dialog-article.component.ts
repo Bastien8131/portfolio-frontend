@@ -2,11 +2,13 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {Article} from '../../../core/models/strapi/collectionType/article.model';
 import {MarkdownComponent} from 'ngx-markdown';
+import {DatePipe} from '@angular/common';
 
 @Component({
   selector: 'app-dialog-article',
   imports: [
-    MarkdownComponent
+    MarkdownComponent,
+    DatePipe
   ],
   templateUrl: './dialog-article.component.html',
   styleUrl: './dialog-article.component.scss'
@@ -22,8 +24,5 @@ export class DialogArticleComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.data);
-    console.log('test', this.article);
   }
-
 }

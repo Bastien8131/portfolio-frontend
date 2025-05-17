@@ -1,9 +1,11 @@
 <div class="page-content">
-  <h1>{{ article.titre }}</h1>
+  <header>
+    <h1>{{ article.titre }}</h1>
+    <sub>{{ article.type }} • {{ article.updatedAt | date:'dd.MM.yyyy' }}</sub>
+    <!--  <p>Created At: {{ article.createdAt }}</p>-->
+    <!--  <p>Updated At: {{ article.updatedAt }}</p>-->
+    <!--  <p>Published At: {{ article.publishedAt }}</p>-->
+    <!--  <p>Locale: {{ article.locale }}</p>-->
+  </header>
   <markdown [data]="article.corp"></markdown>
-  <p>Type: {{ article.type }}</p>
-  <p>Created At: {{ article.createdAt }}</p>
-  <p>Updated At: {{ article.updatedAt }}</p>
-  <p>Published At: {{ article.publishedAt }}</p>
-  <p>Locale: {{ article.locale }}</p>
 </div>

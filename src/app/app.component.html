@@ -1,3 +1,5 @@
+<app-loader *ngIf="isLoading$ | async" [overlay]="true" message="Chargement des données..."></app-loader>
+
 <splide class="header-less-tabs" [selectedSlideIndex]="pageService.currentPage" [options]="options">
   <splide-slide *ngFor="let page of pages; let i = index">
     <ng-container *ngComponentOutlet="page.component"></ng-container>
@@ -11,3 +13,5 @@
     (pageSelected)="pageService.currentPage = $event"
   ></app-navbar>
 </div>
+
+<app-error-message></app-error-message>

@@ -1,0 +1,9 @@
+.page-content{
+  width: 90vw;
+  overflow: hidden;
+  box-sizing: border-box;
+  ::ng-deep .pdfViewer.removePageBorders .page {
+    margin: 0 !important;
+  }
+}
+
