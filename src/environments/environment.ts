@@ -1,6 +1,6 @@
 export const environment = {
   production: false,
-  strapiUrl: 'http://192.168.1.103:1338',
+  strapiUrl: 'http://localhost:1338',
   strapiApiToken: '0b0aa6525560feca7534500566daf28f88a4b16bd5c194505bf34942e984ea4aa84bc4c343614ea787ffa10aaf30592f220d2a19355842f04a1d28bdac16abae81015a3212b65a2b75558115b4dc682157216595e48e6a50fe6f111df22144324aa4dd369b3e31e620205761786db7f36a23f8729a406e7765d050aab3aaf9d2',
   emailJS:{
     serviceID: 'service_iil9o1l',
