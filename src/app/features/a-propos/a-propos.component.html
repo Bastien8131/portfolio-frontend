@@ -4,5 +4,11 @@
 
 <ng-container *ngIf="profile$ | async as profile">
   <markdown [data]="profile.descriptionAPropos"></markdown>
-  <button *ngIf="cvUrl$ | async" (click)="openPDF()">Voir mon CV</button>
+  <div *ngIf="cvUrl$ | async" id="cv-btn">
+    <h3>Curriculum Vitae</h3>
+    <div (click)="openPDF()" id="pastilles">
+      <div id="cv"></div>
+    </div>
+  </div>
+<!--  <button *ngIf="cvUrl$ | async" (click)="openPDF()">Voir mon CV</button>-->
 </ng-container>
