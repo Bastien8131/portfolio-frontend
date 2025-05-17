@@ -1,33 +1,56 @@
 <div class="page-content">
   <h1>Contact</h1>
-  <ng-container *ngIf="profile$ | async as profile">
-    <div class="liens-externes">
-      <div *ngIf="profile.email">
+  <main>
+    <div id="liens-externes" *ngIf="profile$ | async as profile">
+
+      <div id="email" *ngIf="profile.email">
         <h2>email</h2>
-        <a href="mailto:{{profile.email}}">{{profile.email}}</a>
+        <div>
+          <img src="assets/images/icons8-email-50.png" alt="">
+          <a href="mailto:{{profile.email}}">{{profile.email}}</a>
+        </div>
       </div>
 
-      <div *ngIf="liens$ | async as liens">
+      <div id="web" *ngIf="liens$ | async as liens">
         <h2>reseau</h2>
-        <ng-container *ngFor="let lien of liens">
-          <a [href]="lien.url" target="_blank">
-            <img [src]="getFileUrl(lien.logo.data.attributes.name)" alt="">
-            {{lien.nom}}
-          </a>
-        </ng-container>
+        <div>
+          <ng-container *ngFor="let lien of liens">
+            <a [href]="lien.url" target="_blank">
+              <img [src]="getFileUrl(lien.logo.data.attributes.name)" alt="">
+              {{lien.nom}}
+            </a>
+          </ng-container>
+        </div>
       </div>
-    </div>
-  </ng-container>
 
-  <form [formGroup]="emailForm" (ngSubmit)="sendEmail($event)">
-    <div id="corp">
-      <div id="nom-prenom">
-        <input type="text" id="nom" formControlName="nom" name="nom" placeholder="Nom" required>
-        <input type="text" id="prenom" formControlName="prenom" name="prenom" placeholder="Prenom" required>
+      <div id="info">
+        <h2>Pour info</h2>
+        <div id="adresse">
+          <img src="assets/images/icons8-localisation-50.png" alt="">
+          <p>Je vis à Toulouse, France</p>
+        </div>
+        <div id="temps-reponse">
+          <img src="assets/images/icons8-temps-de-réponse-50.png" alt="">
+          <p>Je réponds en général dans les 24h</p>
+        </div>
       </div>
-      <input type="email" id="email" formControlName="email" name="email" placeholder="Email" required>
-      <textarea id="message" formControlName="message" name="message" placeholder="Message" required></textarea>
+
     </div>
-    <button type="submit" [disabled]="emailForm.invalid">Envoyer</button>
-  </form>
+    <div id="form-contact">
+      <form [formGroup]="emailForm" (ngSubmit)="sendEmail($event)">
+        <div id="corp">
+          <div id="identite-contact">
+            <input type="text" id="nom" formControlName="nom" name="nom" placeholder="Nom" required>
+            <input type="text" id="prenom" formControlName="prenom" name="prenom" placeholder="Prenom" required>
+          </div>
+          <input type="email" id="email" formControlName="email" name="email" placeholder="Email" required>
+          <textarea id="message" formControlName="message" name="message" placeholder="Message" required></textarea>
+        </div>
+        <div id="input">
+          <button type="reset">Annuler</button>
+          <button type="submit" [disabled]="emailForm.invalid">Envoyer</button>
+        </div>
+      </form>
+    </div>
+  </main>
 </div>

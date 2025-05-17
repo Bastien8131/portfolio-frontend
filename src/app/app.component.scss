@@ -2,6 +2,10 @@
 
 :host ::ng-deep {
 
+  .splide__slide > *{
+    width: 100%;
+  }
+
   #navbar{
     display: flex;
     //justify-content: center;
