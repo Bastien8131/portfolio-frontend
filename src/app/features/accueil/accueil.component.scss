@@ -1,25 +1,81 @@
-markdown{
-  //margin-left: 20%;
-  //margin-right: 20%;
-  //display: block;
-}
+@import "../../shared/styles/breakpoints";
 
-.page-content{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 40px;
-  gap: 40px;
-
-  .heading{
+:host ::ng-deep{
+  // mobile
+  .page-content{
     display: flex;
     flex-direction: column;
-    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    width: min-content;
 
-    h2{
-      font-size: 24px;
-      margin: 0;
-      padding: 0;
+    .heading{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .title{
+        display: flex;
+        justify-content: center;
+        align-items: end;
+        width: min-content;
+
+        h1{
+          margin: 0;
+          display: none;
+          width: max-content;
+        }
+      }
+
+      h2{
+        font-size: 24px;
+        margin: 0;
+        padding: 0;
+      }
+    }
+
+    .description{
+      >p{
+        text-align: center;
+      }
     }
   }
+
+  // tablette & pc
+  @include md-up{
+    .page-content {
+      //padding: 240px 0;
+      .heading {
+
+        .title {
+          width: 100%;
+
+          h1 {
+            display: block;
+            font-size: 96px;
+          }
+
+          img {
+            width: 450px;
+            height: auto;
+          }
+        }
+
+        h2 {
+          font-size: 64px;
+        }
+
+      }
+
+      p {
+        font-size: 32px;
+      }
+
+
+
+    }
+
+  }
+
 }
+
