@@ -1,18 +1,21 @@
 <div class="page-content">
-  <div class="heading">
-    <img
-      *ngIf="(files$ | async)?.length"
-      [src]="getFileUrl('logo.svg')"
-      alt="Logo">
-    <h2>{{ (profile$ | async)?.statut }}</h2>
-  </div>
+  <header>
+    <div id="title">
+      <h1>Moi, c'est</h1>
+      <img
+        *ngIf="(files$ | async)?.length"
+        [src]="getFileUrl('logo.svg')"
+        alt="Logo">
+    </div>
+    <sub>{{ (profile$ | async)?.statut }}</sub>
+  </header>
 
-  <div>
+  <main>
     <markdown [data]="(profile$ | async)?.descriptionAccueil"></markdown>
 
-    <p>
+    <p id="go-projects">
       J'ai piqué votre curiosité, aller voir
-      <u class="link" (click)="pageServices.goTo('projets')">mes projets</u>
+      <u (click)="pageServices.goTo('projets')">mes projets</u>
     </p>
-  </div>
+  </main>
 </div>
