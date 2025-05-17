@@ -22,8 +22,27 @@ body {
   font-family: "Bricolage Grotesque", sans-serif;
 }
 
-p{
+p, input, textarea{
   font-family: Corbel, "Rubik", sans-serif;
   font-variant-numeric: lining-nums;
   font-weight: 400;
+  font-size: 16px;
+}
+
+textarea {
+  &::placeholder {
+    font-family: Corbel, "Rubik", sans-serif;
+    font-variant-numeric: lining-nums;
+    font-weight: 400;
+    font-size: 16px;
+  }
+}
+
+input {
+  &::placeholder {
+    font-family: Corbel, "Rubik", sans-serif;
+    font-variant-numeric: lining-nums;
+    font-weight: 400;
+    font-size: 16px;
+  }
 }
