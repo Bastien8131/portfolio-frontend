@@ -9,36 +9,6 @@
     gap: 20px;
     background: rgba(63, 58, 107, 0.06);
 
-    @include bp-768(){
-      padding: 0 50px;
-    }
-
-    @include bp-1024{
-      padding: 0 100px;
-    }
-
-    @include bp-1280{
-      gap: 30px;
-      padding: 0 150px;
-    }
-
-    @include bp-1366{
-      padding: 0 200px;
-    }
-
-    @include bp-1440{
-      gap: 40px;
-      padding: 0 210px;
-    }
-
-    @include bp-1600{
-      padding: 0 220px;
-    }
-
-    @include bp-1920{
-      padding: 0 230px;
-    }
-
     h1{
       font-size: 32px;
       margin: 0;
