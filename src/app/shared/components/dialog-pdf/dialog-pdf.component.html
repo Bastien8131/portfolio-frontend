@@ -12,10 +12,24 @@
     [external-link-target]="'blank'"
     [autoresize]="true"
     [show-borders]="false"
+    (after-load-complete)="isLoad = true"
     style="height: 100%; aspect-ratio: 1 / 1.414;"
   ></pdf-viewer>
-  <button (click)="zoomBtn('in')">Zoom In</button>
-  <button (click)="zoomBtn('out')">Zoom Out</button>
+
+  <div id="navbar-pdf" *ngIf="isLoad">
+    <button (click)="this.dialogRef.close()" name="fermer" id="fermer">
+      <div class="icon"></div>
+    </button>
+    <button (click)="zoom = zoom === 1 ? 2 : 1" name="zoom" [id]="zoom === 1 ? 'zoomIn' : 'zoomOut'">
+      <div class="icon"></div>
+    </button>
+    <button (click)="partager()" name="partager" id="partager">
+      <div class="icon"></div>
+    </button>
+    <button (click)="telecharger()" name="telecharger" id="telecharger">
+      <div class="icon"></div>
+    </button>
+  </div>
 </div>
 
 

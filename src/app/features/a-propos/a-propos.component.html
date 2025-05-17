@@ -1,3 +1,14 @@
-<p>a-propos works!</p>
-<markdown [data]="profile.descriptionAPropos"></markdown>
-<button (click)="openPDF()">Mes projets</button>
+<ng-container *ngIf="isLoading$ | async">
+  <div class="loading">Chargement des informations...</div>
+</ng-container>
+
+<ng-container *ngIf="profile$ | async as profile">
+  <markdown [data]="profile.descriptionAPropos"></markdown>
+  <div *ngIf="cvUrl$ | async" id="cv-btn">
+    <h3>Curriculum Vitae</h3>
+    <div (click)="openPDF()" id="pastilles">
+      <div id="cv"></div>
+    </div>
+  </div>
+<!--  <button *ngIf="cvUrl$ | async" (click)="openPDF()">Voir mon CV</button>-->
+</ng-container>

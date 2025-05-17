@@ -2,6 +2,7 @@
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
 @use '@angular/material' as mat;
+@import "app/shared/styles/fonts";
 
 html {
   @include mat.theme((
@@ -16,4 +17,32 @@ html {
 }/* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body {
+  margin: 0;
+  font-family: "Bricolage Grotesque", sans-serif;
+}
+
+p, input, textarea{
+  font-family: Corbel, "Rubik", sans-serif;
+  font-variant-numeric: lining-nums;
+  font-weight: 400;
+  font-size: 16px;
+}
+
+textarea {
+  &::placeholder {
+    font-family: Corbel, "Rubik", sans-serif;
+    font-variant-numeric: lining-nums;
+    font-weight: 400;
+    font-size: 16px;
+  }
+}
+
+input {
+  &::placeholder {
+    font-family: Corbel, "Rubik", sans-serif;
+    font-variant-numeric: lining-nums;
+    font-weight: 400;
+    font-size: 16px;
+  }
+}

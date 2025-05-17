@@ -1,6 +1,6 @@
-// models/profile.model.ts
-import {StrapiRelation} from '../strapi.model';
+import {StrapiRelation, StrapiRelationList} from '../strapi.model';
 import {StrapiFile} from '../file.model';
+import {Liens} from '../collectionType/lien.model';
 
 export interface Profile {
   statut: string
@@ -12,7 +12,17 @@ export interface Profile {
   locale: string
   descriptionAccueil: string
   descriptionAPropos: string
-  reseau: any
+  reseau: StrapiRelationList<Liens>
+  // reseau: Reseau
   cv: StrapiRelation<StrapiFile>
   localizations: any
+}
+
+interface Reseau {
+  data: Daum[]
+}
+
+interface Daum {
+  id: number
+  attributes: Liens
 }
