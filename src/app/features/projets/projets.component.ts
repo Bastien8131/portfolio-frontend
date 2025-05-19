@@ -40,11 +40,13 @@ export class ProjetsComponent {
   async openArticle(id: number) {
     const article = await this.articleService.get(id);
 
+    // Dans projets.component.ts
     const dialogRef = this.dialog.open(DialogArticleComponent, {
       data: { article: article },
       maxWidth: '90vw',
       maxHeight: '90vh',
-      panelClass: 'article-dialog'
+      panelClass: 'article-dialog',
+      autoFocus: false // Désactive le focus automatique qui peut causer des problèmes de scroll
     });
 
     dialogRef.afterClosed().subscribe(result => {
