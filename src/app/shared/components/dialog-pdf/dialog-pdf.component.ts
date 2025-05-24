@@ -2,19 +2,24 @@ import {Component, Inject} from '@angular/core';
 import {PdfViewerModule} from 'ng2-pdf-viewer';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {Article} from '../../../core/models/strapi/collectionType/article.model';
-import {NgIf} from '@angular/common';
+import {NgIf, NgStyle} from '@angular/common';
 
 @Component({
   selector: 'app-dialog-pdf',
   imports: [
     PdfViewerModule,
-    NgIf
+    NgIf,
+    NgStyle
   ],
   templateUrl: './dialog-pdf.component.html',
   styleUrl: './dialog-pdf.component.scss'
 })
 export class DialogPdfComponent {
   private _zoom = 1;
+  private _styleViewer: { [p: string]: string } = {
+    height: '100%',
+    aspectRatio: '1 / 1.413',
+  };
   isLoad: boolean = false;
 
   constructor(
@@ -31,6 +36,9 @@ export class DialogPdfComponent {
     this._zoom = value;
   }
 
+  get styleViewer(): { [key: string]: string } {
+    return this._styleViewer;
+  }
 
   async partager() {
     if (navigator.share) {
