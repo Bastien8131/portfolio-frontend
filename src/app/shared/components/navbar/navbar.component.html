@@ -5,7 +5,7 @@
             [class.active]="pageService.currentPage === i"
             (click)="selectPage(i)">
       <span *ngIf="page.icon" class="icon" id="{{page.icon}}"></span>
-<!--      {{ page.label }}-->
+      <label>{{ page.label }}</label>
     </button>
   </div>
 </nav>
