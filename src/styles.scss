@@ -6,6 +6,7 @@
 @import "app/shared/styles/breakpoints";
 
 html {
+  background: rgba(63, 58, 107, 0.13); // /!\ Temporaire
   @include mat.theme((
     color: (
       theme-type: light,
