@@ -8,12 +8,18 @@
 
   #navbar{
     display: flex;
-    //justify-content: center;
     position: fixed;
-    bottom: 0;
-    width: 100%;
+    bottom: 40px;
+    left: 50%;
+    transform: translate(-50%, 0);
     padding: 20px 40px;
     box-sizing: border-box;
+    border-radius: 1000px;
+    overflow: hidden;
+
+    @include bp-768(){
+      padding: 0;
+    }
 
     app-navbar{
       width: 100%;
@@ -40,7 +46,7 @@
   @include bp-1440{
     #navbar{
       bottom: initial;
-      top: 0;
+      top: 40px;
     }
 
     .header-less-tabs {

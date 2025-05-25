@@ -10,10 +10,6 @@ nav {
   margin: 0px auto;
   max-width: max-content;
 
-  @include bp-768(){
-    margin: 40px auto;
-  }
-
    #nav-items {
     display: grid;
     grid-template-columns: repeat(var(--nav-count, 4), 1fr);
