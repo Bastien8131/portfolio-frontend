@@ -1,4 +1,7 @@
 <div class="page-content">
+  <button mat-icon-button (click)="this.dialogRef.close()">
+    <div id="icon-fermer"></div>
+  </button>
   <header>
     <h1>{{ article.titre }}</h1>
     <sub>{{ article.type }} • {{ article.updatedAt | date:'dd.MM.yyyy' }}</sub>
