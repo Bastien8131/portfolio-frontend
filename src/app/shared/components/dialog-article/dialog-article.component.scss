@@ -1,5 +1,5 @@
 @import "../../styles/breakpoints";
-$iconPath: '/assets/pixelated-interface-icons/';
+@import "../../../shared/styles/icons";
 
 .page-content {
   width: 100%;
@@ -65,7 +65,7 @@ $iconPath: '/assets/pixelated-interface-icons/';
       mask-repeat: no-repeat;
       mask-position: center center;
       mask-size: contain;
-      mask-image: url(#{$iconPath}stop-svgrepo-com.svg);
+      mask-image: icona-moon-icon('close');
       background: black;
       cursor: pointer;
       width: 100%;

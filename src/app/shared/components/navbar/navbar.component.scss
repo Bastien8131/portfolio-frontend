@@ -1,6 +1,6 @@
 // shared/components/navbar/navbar.component.scss
-$iconPath: '/assets/pixelated-interface-icons/';
 @import "../../../shared/styles/breakpoints";
+@import "../../../shared/styles/icons";
 
 nav {
   background-color: rgba(255, 255, 255, 0.58);
@@ -65,10 +65,10 @@ nav {
           display: none;
         }
 
-        &#home { background-image: url(#{$iconPath}home-svgrepo-com.svg); }
-        &#work { background-image: url(#{$iconPath}work-svgrepo-com.svg); }
-        &#info { background-image: url(#{$iconPath}info-svgrepo-com.svg); }
-        &#contact { background-image: url(#{$iconPath}chat-svgrepo-com.svg); }
+        &#home { background-image: icona-moon-icon('home') }
+        &#work { background-image: icona-moon-icon('work') }
+        &#info { background-image: icona-moon-icon('info') }
+        &#contact { background-image: icona-moon-icon('send') }
       }
 
       .label {
