@@ -67,6 +67,7 @@ $iconPath: '/assets/pixelated-interface-icons/';
       mask-size: contain;
       mask-image: url(#{$iconPath}stop-svgrepo-com.svg);
       background: black;
+      cursor: pointer;
       width: 100%;
       height: 100%;
     }
