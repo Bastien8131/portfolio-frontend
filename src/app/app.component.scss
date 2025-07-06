@@ -1,4 +1,5 @@
 @import "shared/styles/breakpoints";
+@import "shared/styles/noise-background"; // Import du nouveau fichier noise
 
 :host ::ng-deep {
 
@@ -20,6 +21,7 @@
     box-sizing: border-box;
     border-radius: 1000px;
     overflow: hidden;
+    z-index: 100; // S'assurer que la navbar reste au-dessus du background
 
     @include bp-768(){
       padding: 0;
@@ -31,6 +33,9 @@
   }
 
   .header-less-tabs {
+    position: relative; // Pour que les slides s'affichent au-dessus du background
+    z-index: 10;
+
     .splide__slide {
       display: flex;
       justify-content: center;
@@ -39,12 +44,20 @@
       padding: 60px 40px 100px;
       scrollbar-width: none; /* Firefox */
       -ms-overflow-style: none; /* IE 10+ */
-      // hidde scroll bar
+      // Transparence pour laisser voir l'arrière-plan
+      background-color: transparent;
+
+      // hide scroll bar
       ::-webkit-scrollbar {
         width: 0px;
         background: transparent; /* make scrollbar transparent */
       }
     }
+  }
+
+  // Loader au-dessus de tout
+  app-loader {
+    z-index: 1000;
   }
 
   @include bp-1440{

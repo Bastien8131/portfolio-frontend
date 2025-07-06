@@ -1,3 +1,16 @@
+<!-- Ajout de l'arrière-plan noise en premier -->
+<div class="main-noise-bg-anim">
+  <div class="main-noise-bg-anim-instance">
+    <div class="rectangle-14"></div>
+    <div class="group-1">
+      <div class="arc-noise"></div>
+      <div class="blob"></div>
+    </div>
+    <div class="rectangle-15"></div>
+  </div>
+</div>
+
+<!-- Contenu existant de l'application -->
 <app-loader *ngIf="isLoading$ | async" [overlay]="true" message="Chargement des données..."></app-loader>
 
 <splide class="header-less-tabs" [selectedSlideIndex]="pageService.currentPage" [options]="options">
