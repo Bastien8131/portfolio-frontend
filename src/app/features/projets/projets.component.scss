@@ -62,6 +62,7 @@ $padding-xlarge: 40px;
       grid-template-columns: repeat(2, minmax($card-width, 1fr));
       height: initial;
       overflow: initial;
+      padding-bottom: 120px;
     }
 
     @include bp-1024 {
