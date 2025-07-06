@@ -14,7 +14,7 @@
   #navbar{
     display: flex;
     position: fixed;
-    bottom: 40px;
+    bottom: 20px;
     left: 50%;
     transform: translate(-50%, 0);
     padding: 20px 40px;
@@ -23,8 +23,12 @@
     overflow: hidden;
     z-index: 100; // S'assurer que la navbar reste au-dessus du background
 
-    @include bp-768(){
+    @include bp-320(){
       padding: 0;
+    }
+
+    @include bp-768(){
+      bottom: 30px;
     }
 
     app-navbar{
