@@ -3,14 +3,12 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {Article} from '../../../core/models/strapi/collectionType/article.model';
 import {MarkdownComponent} from 'ngx-markdown';
 import {DatePipe} from '@angular/common';
-import {MatIcon} from '@angular/material/icon';
 
 @Component({
   selector: 'app-dialog-article',
   imports: [
     MarkdownComponent,
-    DatePipe,
-    MatIcon
+    DatePipe
   ],
   templateUrl: './dialog-article.component.html',
   styleUrl: './dialog-article.component.scss'

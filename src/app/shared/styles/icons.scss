@@ -1,3 +1,5 @@
+@use 'sass:map';
+
 $icona-moon-bold-UI-icons-path: '/assets/icona-moon-bold-UI-icons/';
 $pixelated-interface-icons-path: '/assets/pixelated-interface-icons/';
 
@@ -15,8 +17,8 @@ $pixelated-interface-icons-path: '/assets/pixelated-interface-icons/';
     'zoom-out': 'zoom-out-svgrepo-com.svg'
   );
 
-  @if map-has-key($icons, $name) {
-    @return url('#{$icona-moon-bold-UI-icons-path}#{map-get($icons, $name)}');
+  @if map.has-key($icons, $name) {
+    @return url('#{$icona-moon-bold-UI-icons-path}#{map.get($icons, $name)}');
   } @else {
     @warn "Icône '#{$name}' non trouvée dans icona-moon-icon";
     @return null;
@@ -29,8 +31,8 @@ $pixelated-interface-icons-path: '/assets/pixelated-interface-icons/';
     'chat': 'chat-svgrepo-com.svg'
   );
 
-  @if map-has-key($icons, $name) {
-    @return url('#{$pixelated-interface-icons-path}#{map-get($icons, $name)}');
+  @if map.has-key($icons, $name) {
+    @return url('#{$pixelated-interface-icons-path}#{map.get($icons, $name)}');
   } @else {
     @warn "Icône '#{$name}' non trouvée dans pixelated-icon";
     @return null;
