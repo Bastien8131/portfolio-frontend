@@ -136,6 +136,7 @@ markdown ::ng-deep {
   h1{
     font-size: 32px;
     color: #3F3A6B;
+    margin: 0;
 
     @include bp-768() {
       font-size: 40px;
