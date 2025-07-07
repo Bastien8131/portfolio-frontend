@@ -1,0 +1,38 @@
+$icona-moon-bold-UI-icons-path: '/assets/icona-moon-bold-UI-icons/';
+$pixelated-interface-icons-path: '/assets/pixelated-interface-icons/';
+
+// Fonction pour récupérer le chemin des icônes Icona Moon
+@function icona-moon-icon($name) {
+  $icons: (
+    'close': 'close-svgrepo-com.svg',
+    'download': 'download-svgrepo-com.svg',
+    'work': 'folder-document-svgrepo-com.svg',
+    'home': 'home-svgrepo-com.svg',
+    'info': 'information-square-svgrepo-com.svg',
+    'send': 'send-svgrepo-com.svg',
+    'share': 'share-1-svgrepo-com.svg',
+    'zoom-in': 'zoom-in-svgrepo-com.svg',
+    'zoom-out': 'zoom-out-svgrepo-com.svg'
+  );
+
+  @if map-has-key($icons, $name) {
+    @return url('#{$icona-moon-bold-UI-icons-path}#{map-get($icons, $name)}');
+  } @else {
+    @warn "Icône '#{$name}' non trouvée dans icona-moon-icon";
+    @return null;
+  }
+}
+
+// Fonction pour récupérer le chemin des icônes Pixelated
+@function pixelated-icon($name) {
+  $icons: (
+    'chat': 'chat-svgrepo-com.svg'
+  );
+
+  @if map-has-key($icons, $name) {
+    @return url('#{$pixelated-interface-icons-path}#{map-get($icons, $name)}');
+  } @else {
+    @warn "Icône '#{$name}' non trouvée dans pixelated-icon";
+    @return null;
+  }
+}

@@ -1,11 +1,14 @@
 <!-- shared/components/navbar/navbar.component.html -->
-<nav class="navbar">
-  <div class="nav-items">
-    <button *ngFor="let page of pages; let i = index"
-            [class.active]="pageService.currentPage === i"
-            (click)="selectPage(i)">
-      <span *ngIf="page.icon" class="icon" id="{{page.icon}}"></span>
-<!--      {{ page.label }}-->
+<nav>
+  <div id="nav-items" #navItems>
+    <div class="nav-background"></div>
+    <button
+      *ngFor="let page of pages; let i = index"
+        class="nav-button"
+        [class.active]="pageService.currentPage === i"
+        (click)="selectPage(i)">
+      <span *ngIf="page.icon" class="icon" [id]="page.icon"></span>
+      <span class="label">{{ page.label }}</span>
     </button>
   </div>
 </nav>

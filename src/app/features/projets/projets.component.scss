@@ -62,6 +62,7 @@ $padding-xlarge: 40px;
       grid-template-columns: repeat(2, minmax($card-width, 1fr));
       height: initial;
       overflow: initial;
+      padding-bottom: 120px;
     }
 
     @include bp-1024 {
@@ -90,7 +91,7 @@ $padding-xlarge: 40px;
 
       @include bp-1280 {
         &:hover {
-          transform: translateY(-5px);
+          transform: translateY(-5px) scale(1.05);
           box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 
           .top {
@@ -160,7 +161,7 @@ $padding-xlarge: 40px;
             font-size: 32px;
           }
 
-          @include bp-1440 {
+          @include bp-1600 {
             font-size: 36px;
           }
         }
@@ -185,7 +186,7 @@ $padding-xlarge: 40px;
             font-size: 16px;
           }
 
-          @include bp-1440 {
+          @include bp-1600 {
             font-size: 20px;
           }
         }
@@ -219,7 +220,8 @@ $padding-xlarge: 40px;
         height: 50%;
         overflow: hidden;
         box-sizing: border-box;
-        background-size: cover;
+        background-size: 100%;
+        background-repeat: no-repeat;
         background-position: center;
 
         @include bp-1280 {
@@ -260,9 +262,12 @@ $padding-xlarge: 40px;
             font-size: 32px;
           }
 
-          @include bp-1440 {
-            font-size: 36px;
+          @include bp-1440{
             padding: $padding-xlarge;
+          }
+
+          @include bp-1600 {
+            font-size: 36px;
           }
         }
 
@@ -288,6 +293,10 @@ $padding-xlarge: 40px;
 
           @include bp-1440 {
             padding: $padding-xlarge;
+          }
+
+          .date{
+            text-shadow: black 0px 0px 2px;
           }
         }
 

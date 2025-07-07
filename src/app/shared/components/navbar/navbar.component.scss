@@ -1,39 +1,134 @@
-$iconPath: '/assets/pixelated-interface-icons/';
+// shared/components/navbar/navbar.component.scss
+@import "../../../shared/styles/breakpoints";
+@import "../../../shared/styles/icons";
 
-.navbar {
-  background-color: aliceblue;
+nav {
+  background-color: rgba(255, 255, 255, 0.58);
+  backdrop-filter: blur(25px);
   border-radius: 1000px;
   padding: 10px;
-  .nav-items{
-    display: flex;
-    gap: 10px;
-    justify-content: space-between;
+  margin: 0px auto;
+  max-width: max-content;
 
-    button{
+   #nav-items {
+    display: grid;
+    grid-template-columns: repeat(var(--nav-count, 4), 1fr);
+    gap: 10px;
+    align-items: stretch;
+    position: relative;
+    --active-index: 0; // Propriété CSS personnalisée pour l'index actif
+    --gap-size: 10px; // Taille du gap
+
+    @include bp-768 {
+      gap: 20px;
+      --button-width: 120px; // Largeur des boutons
+      --gap-size: 20px; // Gap responsive
+    }
+
+    @include bp-1280 {
+      --button-width: 160px; // Largeur des boutons
+    }
+
+    .nav-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
       background-color: white;
       border: none;
-      border-radius: 100%;
-      width: 50px;
+      border-radius: 500px;
+      width: var(--button-width);
       height: 50px;
       padding: 15px;
+      transition: all 0.1s ease-in-out;
+      z-index: 1;
+      cursor: pointer;
+      box-sizing: border-box;
 
-      &:hover{
-        background-color: lightgray;
+      @include bp-768{
+        background-color: transparent;
       }
 
-      .icon{
+      &:hover:not(.active) {
+        background-color: white;
+      }
+
+      .icon {
         display: inline-block;
-        width: 100%;
-        height: 100%;
+        width: 20px;
+        height: 20px;
         background-repeat: no-repeat;
         background-size: contain;
         background-position: center;
+        transition: transform 0.2s ease;
 
-        &#home{ background-image: url(#{$iconPath}home-svgrepo-com.svg); }
-        &#work{ background-image: url(#{$iconPath}work-svgrepo-com.svg); }
-        &#info{ background-image: url(#{$iconPath}info-svgrepo-com.svg); }
-        &#contact{ background-image: url(#{$iconPath}chat-svgrepo-com.svg); }
+        @include bp-768 {
+          display: none;
+        }
+
+        &#home { background-image: icona-moon-icon('home') }
+        &#work { background-image: icona-moon-icon('work') }
+        &#info { background-image: icona-moon-icon('info') }
+        &#contact { background-image: icona-moon-icon('send') }
+      }
+
+      .label {
+        display: none;
+        font-family: "Bricolage Grotesque", sans-serif;
+        font-weight: bold;
+        font-size: 16px;
+        transition: all 0.2s ease;
+
+        @include bp-768 {
+          display: block;
+        }
+
+        @include bp-1280 {
+          font-size: 20px;
+        }
+
+        @include bp-1440 {
+          font-size: 24px;
+        }
       }
     }
+
+    // Background animé utilisant CSS custom properties
+    .nav-background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: var(--button-width);
+      height: 50px;
+      background: white;
+      border-radius: 500px;
+      z-index: 0;
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+      // Utilise les custom properties pour calculer la position
+      // Formule : index * (largeur bouton + gap)
+      transform: translateX(calc(var(--active-index) * (var(--button-width) + var(--gap-size))));
+    }
   }
+}
+
+// Animation d'apparition au chargement
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.navbar {
+  animation: fadeInUp 0.5s ease-out;
+}
+
+// Animation du background au focus pour l'accessibilité
+.nav-button:focus-visible {
+  z-index: 2;
 }

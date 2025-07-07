@@ -13,7 +13,7 @@
     [autoresize]="true"
     [show-borders]="false"
     (after-load-complete)="isLoad = true"
-    style="height: 100%; aspect-ratio: 1 / 1.414;"
+    [ngStyle]="styleViewer"
   ></pdf-viewer>
 
   <div id="navbar-pdf" *ngIf="isLoad">

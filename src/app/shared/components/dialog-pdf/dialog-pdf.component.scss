@@ -1,11 +1,20 @@
-$iconPath: '/assets/pixelated-interface-icons/';
+@import "../../styles/breakpoints";
+@import "../../../shared/styles/icons";
+
+
 
 .page-content{
-  width: 90vw;
+  display: flex;
+  justify-content: center;
+  height: 100%;
   overflow: hidden;
   box-sizing: border-box;
   ::ng-deep .pdfViewer.removePageBorders .page {
     margin: 0 !important;
+  }
+
+  @include bp-landscape {
+    margin: 0 auto;
   }
 
   #navbar-pdf {
@@ -30,11 +39,11 @@ $iconPath: '/assets/pixelated-interface-icons/';
       box-sizing: border-box;
       cursor: pointer;
 
-      &#fermer .icon { mask-image: url(#{$iconPath}stop-svgrepo-com.svg); }
-      &#zoomIn .icon { mask-image: url(#{$iconPath}zoom-up-svgrepo-com.svg); }
-      &#zoomOut .icon { mask-image: url(#{$iconPath}zoom-down-svgrepo-com.svg); }
-      &#partager .icon { mask-image: url(#{$iconPath}share-svgrepo-com.svg); }
-      &#telecharger .icon { mask-image: url(#{$iconPath}download-svgrepo-com.svg); }
+      &#fermer .icon { mask-image: icona-moon-icon('close') }
+      &#zoomIn .icon { mask-image: icona-moon-icon('zoom-in'); }
+      &#zoomOut .icon { mask-image: icona-moon-icon('zoom-out'); }
+      &#partager .icon { mask-image: icona-moon-icon('share'); }
+      &#telecharger .icon { mask-image: icona-moon-icon('download') }
 
       .icon {
         mask-repeat: no-repeat;

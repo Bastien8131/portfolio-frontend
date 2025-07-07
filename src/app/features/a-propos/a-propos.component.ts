@@ -52,7 +52,9 @@ export class AProposComponent {
       if (!url) return;
 
       this.dialog.open(DialogPdfComponent, {
-        data: { url }
+        data: { url },
+        panelClass: 'pdf-dialog',
+        autoFocus: false
       });
     }).unsubscribe();
   }
