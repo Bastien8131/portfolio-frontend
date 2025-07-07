@@ -1,1 +1,90 @@
-/* You can add global styles to this file, and also import other style files */
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '@angular/material' as mat;
+@import "app/shared/styles/fonts";
+@import "app/shared/styles/breakpoints";
+
+html {
+  // Suppression du background temporaire - remplacé par l'effet noise
+  // background: rgba(63, 58, 107, 0.13); // /!\ Temporaire - SUPPRIMÉ
+  @include mat.theme((
+    color: (
+      theme-type: light,
+      primary: mat.$azure-palette,
+      tertiary: mat.$blue-palette,
+    ),
+    typography: Roboto,
+    density: 0,
+  ));
+}/* You can add global styles to this file, and also import other style files */
+
+html, body {
+  height: 100%;
+  overflow-x: hidden; // Éviter le scroll horizontal à cause de l'effet noise
+}
+
+body {
+  margin: 0;
+  font-family: "Bricolage Grotesque", sans-serif;
+  // Assurer que le body est transparent pour voir l'arrière-plan noise
+  background-color: transparent;
+}
+
+// Améliorer la lisibilité du contenu avec l'arrière-plan
+p, input, textarea, ul, li, table, th, td {
+  font-family: Corbel, "Rubik", sans-serif;
+  font-variant-numeric: lining-nums;
+  font-weight: 400;
+  font-size: 16px;
+  // Ajouter un peu de contraste pour la lisibilité
+  text-shadow: 0 0 1px rgba(255, 255, 255, 0.8);
+}
+
+textarea {
+  &::placeholder {
+    font-family: Corbel, "Rubik", sans-serif;
+    font-variant-numeric: lining-nums;
+    font-weight: 400;
+    font-size: 16px;
+  }
+}
+
+input {
+  &::placeholder {
+    font-family: Corbel, "Rubik", sans-serif;
+    font-variant-numeric: lining-nums;
+    font-weight: 400;
+    font-size: 16px;
+  }
+}
+
+.article-dialog .mat-mdc-dialog-container {
+  overflow: hidden;
+  // S'assurer que les dialogs restent au-dessus de l'effet
+  z-index: 1050;
+
+  @media (orientation: landscape) {
+    width: auto;
+    max-width: 80vw;
+  }
+}
+
+.pdf-dialog {
+  width: 90vw;
+  aspect-ratio: 1/1.413;
+  min-width: min-content !important;
+  max-width: initial !important;
+  // S'assurer que les PDF restent au-dessus
+  z-index: 1100;
+
+  @include bp-landscape{
+    aspect-ratio: initial;
+    width: initial;
+    height: 90vh;
+  }
+}
+
+// S'assurer que les overlays et modales restent au-dessus
+.cdk-overlay-container {
+  z-index: 1100;
+}

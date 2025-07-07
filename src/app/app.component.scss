@@ -1,0 +1,79 @@
+@import "shared/styles/breakpoints";
+@import "shared/styles/noise-background"; // Import du nouveau fichier noise
+
+:host ::ng-deep {
+
+  .splide__slide > *{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+  }
+
+  #navbar{
+    display: flex;
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    padding: 20px 40px;
+    box-sizing: border-box;
+    border-radius: 1000px;
+    overflow: hidden;
+    z-index: 100; // S'assurer que la navbar reste au-dessus du background
+
+    @include bp-320(){
+      padding: 0;
+    }
+
+    @include bp-768(){
+      bottom: 30px;
+    }
+
+    app-navbar{
+      width: 100%;
+    }
+  }
+
+  .header-less-tabs {
+    position: relative; // Pour que les slides s'affichent au-dessus du background
+    z-index: 10;
+
+    .splide__slide {
+      display: flex;
+      justify-content: center;
+      height: 100vh;
+      overflow: scroll;
+      padding: 60px 40px 100px;
+      scrollbar-width: none; /* Firefox */
+      -ms-overflow-style: none; /* IE 10+ */
+      // Transparence pour laisser voir l'arrière-plan
+      background-color: transparent;
+
+      // hide scroll bar
+      ::-webkit-scrollbar {
+        width: 0px;
+        background: transparent; /* make scrollbar transparent */
+      }
+    }
+  }
+
+  // Loader au-dessus de tout
+  app-loader {
+    z-index: 1000;
+  }
+
+  @include bp-1440{
+    #navbar{
+      bottom: initial;
+      top: 40px;
+    }
+
+    .header-less-tabs {
+      .splide__slide {
+        padding: 20vh 240px 0;
+      }
+    }
+  }
+}

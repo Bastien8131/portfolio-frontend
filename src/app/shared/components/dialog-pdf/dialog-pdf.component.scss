@@ -1,0 +1,59 @@
+@import "../../styles/breakpoints";
+@import "../../../shared/styles/icons";
+
+
+
+.page-content{
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+  ::ng-deep .pdfViewer.removePageBorders .page {
+    margin: 0 !important;
+  }
+
+  @include bp-landscape {
+    margin: 0 auto;
+  }
+
+  #navbar-pdf {
+    display: flex;
+    justify-content: right;
+    flex-direction: row-reverse;
+    gap: 8px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 40px;
+    box-sizing: border-box;
+
+    button {
+      width: 40px;
+      aspect-ratio: 1/1;
+      background-color: rgba(0,0,0,0.9);
+      border-radius: 100%;
+      border: none;
+      padding: 5px;
+      box-sizing: border-box;
+      cursor: pointer;
+
+      &#fermer .icon { mask-image: icona-moon-icon('close') }
+      &#zoomIn .icon { mask-image: icona-moon-icon('zoom-in'); }
+      &#zoomOut .icon { mask-image: icona-moon-icon('zoom-out'); }
+      &#partager .icon { mask-image: icona-moon-icon('share'); }
+      &#telecharger .icon { mask-image: icona-moon-icon('download') }
+
+      .icon {
+        mask-repeat: no-repeat;
+        mask-position: center center;
+        mask-size: contain;
+        background: white;
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+}
+

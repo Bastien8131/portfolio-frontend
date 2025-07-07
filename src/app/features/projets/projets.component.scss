@@ -1,0 +1,353 @@
+@import "../../shared/styles/breakpoints";
+
+// Variables pour réutiliser les valeurs communes
+$primary-color: #3F3A6B;
+$secondary-color: #7A76A3;
+$dark-accent: #272536;
+$gradient-bg: linear-gradient(to top, $secondary-color, $primary-color);
+$gradient-overlay: linear-gradient(to top, transparent, rgba($primary-color, 0.8) 50%, rgba($primary-color, 0.9) 60%, $primary-color);
+$border-radius-small: 15px;
+$border-radius-medium: 20px;
+$card-width: 280px;
+$padding-small: 15px;
+$padding-medium: 20px;
+$padding-large: 30px;
+$padding-xlarge: 40px;
+
+:host ::ng-deep {
+  // Styles communs pour les boutons
+  button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    background-color: white;
+    color: black;
+    border: none;
+    border-radius: 1000px;
+    padding: 8px 16px;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+
+    @include bp-768 {
+      padding: 10px 20px;
+      font-size: 14px;
+    }
+  }
+
+  .page-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: $padding-small;
+    border-radius: $border-radius-small;
+    overflow-y: scroll;
+    height: 100%;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    @include bp-480 {
+      gap: $padding-medium;
+      border-radius: $border-radius-medium;
+    }
+
+    @include bp-768 {
+      justify-content: space-between;
+      display: grid;
+      grid-template-columns: repeat(2, minmax($card-width, 1fr));
+      height: initial;
+      overflow: initial;
+      padding-bottom: 120px;
+    }
+
+    @include bp-1024 {
+      gap: $padding-medium;
+      grid-template-columns: repeat(3, minmax($card-width, 1fr));
+    }
+
+    // Styles de carte projet
+    .card {
+      position: relative;
+      width: $card-width;
+      aspect-ratio: 1/1;
+      border-radius: $border-radius-medium;
+      color: white;
+      background: $gradient-bg;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+      @include bp-768 {
+        width: 100%;
+
+        .top button {
+          display: flex;
+        }
+      }
+
+      @include bp-1280 {
+        &:hover {
+          transform: translateY(-5px) scale(1.05);
+          box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+
+          .top {
+            opacity: 1;
+          }
+        }
+      }
+
+      // Section supérieure de la carte
+      .top {
+        display: flex;
+        flex-direction: column;
+        padding: $padding-small;
+        box-sizing: border-box;
+        gap: 8px;
+        height: 50%;
+
+        @include bp-768 {
+          padding: $padding-medium;
+        }
+
+        @include bp-1280 {
+          padding: $padding-large;
+          gap: 10px;
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          opacity: 0;
+          background: $gradient-overlay;
+          backdrop-filter: blur(10px);
+          transition: opacity 0.3s ease;
+        }
+
+        @include bp-1440 {
+          padding: $padding-xlarge;
+        }
+
+        // Réinitialisation des marges
+        h3, p {
+          margin: 0;
+          padding: 0;
+        }
+
+        h3 {
+          font-weight: bold;
+          visibility: visible;
+          font-size: 24px;
+
+          @include bp-480 {
+            font-size: 20px;
+          }
+
+          // Ajustement spécifique pour tablette
+          @include bp-768 {
+            font-size: 20px;
+          }
+
+          @include bp-960 {
+            font-size: 24px;
+          }
+
+          @include bp-1024 {
+            font-size: 28px;
+          }
+
+          @include bp-1280 {
+            font-size: 32px;
+          }
+
+          @include bp-1600 {
+            font-size: 36px;
+          }
+        }
+
+        p {
+          font-size: 14px;
+
+          @include bp-480 {
+            font-size: 13px;
+          }
+
+          // Ajustement spécifique pour tablette
+          @include bp-768 {
+            font-size: 12px;
+          }
+
+          @include bp-1024 {
+            font-size: 14px;
+          }
+
+          @include bp-1280 {
+            font-size: 16px;
+          }
+
+          @include bp-1600 {
+            font-size: 20px;
+          }
+        }
+
+        button {
+          display: none;
+          width: max-content;
+          font-size: 11px;
+          padding: 6px 12px;
+
+          @include bp-1024 {
+            font-size: 14px;
+            padding: 8px 20px;
+            margin-top: 5px;
+          }
+
+          @include bp-1280 {
+            display: block;
+            font-size: 16px;
+            padding: 10px 30px;
+            margin-top: 10px;
+          }
+        }
+      }
+
+      // Section inférieure de la carte
+      .bottom {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 50%;
+        overflow: hidden;
+        box-sizing: border-box;
+        background-size: 100%;
+        background-repeat: no-repeat;
+        background-position: center;
+
+        @include bp-1280 {
+          height: 100%;
+        }
+
+        h3 {
+          display: none;
+          visibility: hidden;
+          font-size: 18px;
+          font-weight: bold;
+          margin: 0;
+          padding: $padding-medium;
+          box-sizing: border-box;
+          background: $gradient-overlay;
+
+          @include bp-480 {
+            font-size: 20px;
+          }
+
+          // Ajustement spécifique pour tablette
+          @include bp-768 {
+            font-size: 20px;
+          }
+
+          @include bp-960 {
+            font-size: 24px;
+          }
+
+          @include bp-1024 {
+            font-size: 28px;
+          }
+
+          @include bp-1280 {
+            display: block;
+            visibility: visible;
+            padding: $padding-large;
+            font-size: 32px;
+          }
+
+          @include bp-1440{
+            padding: $padding-xlarge;
+          }
+
+          @include bp-1600 {
+            font-size: 36px;
+          }
+        }
+
+        .info {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          width: 100%;
+          padding: $padding-medium;
+          box-sizing: border-box;
+          font-size: 12px;
+          position: absolute;
+          bottom: 0;
+          z-index: 1;
+
+          @include bp-1024 {
+            padding: $padding-large;
+          }
+
+          @include bp-1280 {
+            font-size: 14px;
+          }
+
+          @include bp-1440 {
+            padding: $padding-xlarge;
+          }
+
+          .date{
+            text-shadow: black 0px 0px 2px;
+          }
+        }
+
+        .techno {
+          display: none;
+          gap: 10px;
+
+          @include bp-1280 {
+            display: flex;
+            span {
+              background-color: white;
+              color: black;
+              padding: 3px 8px;
+              border-radius: 5px;
+              font-size: 10px;
+            }
+          }
+
+          @include bp-1024 {
+            span {
+              font-size: 12px;
+            }
+          }
+
+          @include bp-1280 {
+            span {
+              font-size: 14px;
+            }
+          }
+        }
+
+        .linear {
+          display: flex;
+          justify-content: flex-end;
+          align-items: flex-end;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(135deg, transparent 10%, $dark-accent);
+          padding: $padding-small;
+          box-sizing: border-box;
+
+          button {
+            position: relative;
+            z-index: 2;
+          }
+
+          @include bp-1280 {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}

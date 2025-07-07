@@ -1,0 +1,21 @@
+<div class="page-content">
+  <header>
+    <div id="title">
+      <h1>Moi, c'est</h1>
+      <img
+        *ngIf="(files$ | async)?.length"
+        [src]="getFileUrl('logo.svg')"
+        alt="Logo">
+    </div>
+    <sub>{{ (profile$ | async)?.statut }}</sub>
+  </header>
+
+  <main>
+    <markdown [data]="(profile$ | async)?.descriptionAccueil"></markdown>
+
+    <p id="go-projects">
+      J'ai piqué votre curiosité, aller voir
+      <u (click)="pageServices.goTo('projets')">mes projets</u>
+    </p>
+  </main>
+</div>

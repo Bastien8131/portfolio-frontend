@@ -1,0 +1,121 @@
+@import "../../shared/styles/breakpoints";
+
+:host ::ng-deep {
+  .page-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 40px;
+    align-items: center;
+    width: 100%;
+
+    @include bp-768(){
+      width: min-content;
+    }
+
+    header{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: max-content;
+      margin: 0 100px;
+
+      #title{
+        display: flex;
+        align-items: end;
+
+        h1{
+          display: none;
+          font-size: 26px;
+          margin: 0;
+          padding: 0;
+
+          @include bp-768{
+            display: block;
+          }
+
+          @include bp-1024{
+            font-size: 32px;
+          }
+
+          @include bp-1440{
+            font-size: 48px;
+          }
+
+          @include bp-1440{
+            font-size: 96px;
+          }
+        }
+
+        img{
+          width: 250px;
+          height: 100%;
+
+          @include bp-375{
+            width: 300px;
+          }
+
+          @include bp-768{
+            width: 350px;
+          }
+
+          @include bp-1024{
+            width: 400px;
+          }
+
+          @include bp-1440{
+            width: 450px;
+          }
+        }
+      }
+
+      sub{
+        font-size: 24px;
+        margin: 0;
+        padding: 0;
+
+        @include bp-768{
+          font-size: 32px;
+        }
+
+        @include bp-1024{
+          font-size: 40px;
+        }
+
+        @include bp-1440{
+          font-size: 64px;
+        }
+      }
+    }
+
+    main{
+      width: 100%;
+
+      p{
+        font-size: 16px;
+
+        u{
+          white-space: nowrap;
+          cursor: pointer;
+        }
+
+        @include bp-768{
+          font-size: 20px;
+
+          &#go-projects{
+            text-align: center;
+          }
+        }
+
+        @include bp-1024{
+          font-size: 24px;
+        }
+
+        @include bp-1440{
+          font-size: 32px;
+        }
+      }
+    }
+  }
+}
+

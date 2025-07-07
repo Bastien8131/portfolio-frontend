@@ -1,0 +1,35 @@
+<div class="page-content">
+  <pdf-viewer
+    [src]="url"
+    [render-text]="true"
+    [rotation]="0"
+    [original-size]="false"
+    [show-all]="true"
+    [fit-to-page]="false"
+    [zoom]="zoom"
+    [zoom-scale]="'page-width'"
+    [stick-to-page]="false"
+    [external-link-target]="'blank'"
+    [autoresize]="true"
+    [show-borders]="false"
+    (after-load-complete)="isLoad = true"
+    [ngStyle]="styleViewer"
+  ></pdf-viewer>
+
+  <div id="navbar-pdf" *ngIf="isLoad">
+    <button (click)="this.dialogRef.close()" name="fermer" id="fermer">
+      <div class="icon"></div>
+    </button>
+    <button (click)="zoom = zoom === 1 ? 2 : 1" name="zoom" [id]="zoom === 1 ? 'zoomIn' : 'zoomOut'">
+      <div class="icon"></div>
+    </button>
+    <button (click)="partager()" name="partager" id="partager">
+      <div class="icon"></div>
+    </button>
+    <button (click)="telecharger()" name="telecharger" id="telecharger">
+      <div class="icon"></div>
+    </button>
+  </div>
+</div>
+
+

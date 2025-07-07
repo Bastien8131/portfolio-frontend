@@ -29,12 +29,22 @@
               {
                 "glob": "**/*",
                 "input": "public"
+              },
+              {
+                "glob": "**/*",
+                "input": "src/assets",
+                "output": "/assets"
               }
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/@splidejs/splide/dist/css/splide.min.css",
+              "node_modules/@splidejs/splide/dist/css/themes/splide-default.min.css",
+              "node_modules/katex/dist/katex.min.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/@splidejs/splide/dist/js/splide.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -62,6 +72,11 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "host": "0.0.0.0",
+            "port": 4200,
+            "publicHost": "192.168.1.103"
+          },
           "configurations": {
             "production": {
               "buildTarget": "portfolio-frontend:build:production"
@@ -88,6 +103,11 @@
               {
                 "glob": "**/*",
                 "input": "public"
+              },
+              {
+                "glob": "**/*",
+                "input": "src/assets",
+                "output": "/assets"
               }
             ],
             "styles": [
