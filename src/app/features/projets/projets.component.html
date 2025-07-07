@@ -20,7 +20,7 @@
       <div
         class="bottom"
         [ngStyle]="{
-          'background-image': 'url(' + (projet.cover?.data ? (projet.cover.data.attributes.name | fileUrl) : '') + ')'
+          'background-image': 'url(' + (projet.cover?.data?.attributes?.name ? (projet.cover.data.attributes.name | fileUrl) : '') + ')'
         }"
       >
         <h3>{{projet.titre}}</h3>
