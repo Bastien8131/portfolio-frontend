@@ -72,7 +72,7 @@ $background-tint: rgba(63, 58, 107, 0.13); // Couleur existante dans votre app
         background-position: center;
         background-repeat: no-repeat;
         background-blend-mode: screen;
-        filter: blur(60px) brightness(110%);
+        filter: blur(30px) brightness(110%);
         mix-blend-mode: multiply;
         z-index: 2;
       }
