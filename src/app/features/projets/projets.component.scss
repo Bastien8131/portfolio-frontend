@@ -294,6 +294,10 @@ $padding-xlarge: 40px;
           @include bp-1440 {
             padding: $padding-xlarge;
           }
+
+          .date{
+            text-shadow: black 0px 0px 2px;
+          }
         }
 
         .techno {
