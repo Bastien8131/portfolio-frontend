@@ -1,7 +1,7 @@
 export const environment = {
   production: false,
-  strapiUrl: 'http://localhost:1338',
-  strapiApiToken: '0b0aa6525560feca7534500566daf28f88a4b16bd5c194505bf34942e984ea4aa84bc4c343614ea787ffa10aaf30592f220d2a19355842f04a1d28bdac16abae81015a3212b65a2b75558115b4dc682157216595e48e6a50fe6f111df22144324aa4dd369b3e31e620205761786db7f36a23f8729a406e7765d050aab3aaf9d2',
+  strapiUrl: 'http://bastienbories.androcode.fr:5501',
+  strapiApiToken: '90f1346e2f5378c72bfd8a7938a0aa54bda66128f8dc7ad2497c5e82fb1df6da888726d8eeb923a85ad65244960a5180dc5fde3177f19eac1b74cf3bc9e45e0ba5d9e7d4f004d1a29bc7c0cfc5eca6b8dc8b06a89da837a8c2fe0575138e0e4c95ea59b30526d40bf9880faca0eaed835b37c594835a8a019dc3f31edc362dfd',
   emailJS:{
     serviceID: 'service_iil9o1l',
     templateID: 'template_uv9b6dj',
