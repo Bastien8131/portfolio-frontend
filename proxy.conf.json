@@ -1,0 +1,8 @@
+{
+  "/api/*": {
+    "target": "http://bastienbories.androcode.fr:5501",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  }
+}
