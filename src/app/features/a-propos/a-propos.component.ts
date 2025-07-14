@@ -4,7 +4,7 @@ import { MarkdownComponent } from 'ngx-markdown';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogPdfComponent } from '../../shared/components/dialog-pdf/dialog-pdf.component';
-import { environment } from '../../../environments/environment';
+import { environmentDev } from '../../../environments/environment.dev';
 import { DataStoreService } from '../../core/services/store/data-store.service';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -27,7 +27,7 @@ export class AProposComponent {
   profile$: Observable<Profile | null>;
   isLoading$: Observable<boolean>;
   cvUrl$: Observable<string | null>;
-  apiUrl = environment.strapiUrl;
+  apiUrl = environmentDev.strapiUrl;
 
   constructor(
     private dataStore: DataStoreService,

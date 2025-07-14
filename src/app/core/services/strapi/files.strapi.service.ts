@@ -3,7 +3,7 @@ import {BehaviorSubject, firstValueFrom, Observable} from 'rxjs';
 import { ApiService } from './api.strapi.service';
 import { StrapiFile } from '../../models/strapi/file.model';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../../../../environments/environment';
+import { environmentDev } from '../../../../environments/environment.dev';
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +13,8 @@ export class FilesStrapiService {
   private filesSubject = new BehaviorSubject<StrapiFile[]>([]);
   public files$ = this.filesSubject.asObservable();
   private loaded = false;
-  private apiUrl = environment.strapiUrl + '/api';
-  private apiToken = environment.strapiApiToken;
+  private apiUrl = environmentDev.strapiUrl + '/api';
+  private apiToken = environmentDev.strapiApiToken;
 
   constructor(
     private apiService: ApiService,
@@ -62,8 +62,8 @@ export class FilesStrapiService {
     const file = files.find(f => f.name === filename);
     if (!file) return null;
 
-    if (file.ext == '.svg') return environment.strapiUrl + file.url;
+    if (file.ext == '.svg') return environmentDev.strapiUrl + file.url;
 
-    return environment.strapiUrl + file.formats.thumbnail.url;
+    return environmentDev.strapiUrl + file.formats.thumbnail.url;
   }
 }
