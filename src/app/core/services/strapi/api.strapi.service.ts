@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
-import { environmentDev } from '../../../../environments/environment.dev';
+import { environment } from '../../../../environments/environment';
 import {map, Observable} from 'rxjs';
 import {StrapiData, StrapiRoot} from '../../models/strapi/strapi.model';
 import {StrapiFile} from '../../models/strapi/file.model';
@@ -9,8 +9,8 @@ import {StrapiFile} from '../../models/strapi/file.model';
   providedIn: 'root'
 })
 export class ApiService {
-  private apiUrl = environmentDev.strapiUrl + '/api';
-  private apiToken = environmentDev.strapiApiToken;
+  private apiUrl = environment.strapiUrl + '/api';
+  private apiToken = environment.strapiApiToken;
 
   constructor(private http: HttpClient) { }
 

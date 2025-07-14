@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { AsyncPipe, NgForOf, NgIf } from '@angular/common';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import emailjs from '@emailjs/browser';
-import { environmentDev } from '../../../environments/environment.dev';
+import { environment } from '../../../environments/environment';
 import { DataStoreService } from '../../core/services/store/data-store.service';
 import { Liens } from '../../core/models/strapi/collectionType/lien.model';
 import {Observable, of, switchMap} from 'rxjs';
@@ -22,7 +22,7 @@ import { Profile } from '../../core/models/strapi/singleType/profile.model';
   styleUrl: './contact.component.scss'
 })
 export class ContactComponent {
-  private emailJSID = environmentDev.emailJS;
+  private emailJSID = environment.emailJS;
 
   // Typage explicite des observables
   profile$: Observable<Profile | null>;

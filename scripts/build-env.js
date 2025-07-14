@@ -16,4 +16,4 @@ const envConfigFile = `export const environment = {
 };`;
 
 fs.writeFileSync(targetPath, envConfigFile);
-console.log(`Environment file generated at ${targetPath}`);
+console.log('✅ Production environment file generated');

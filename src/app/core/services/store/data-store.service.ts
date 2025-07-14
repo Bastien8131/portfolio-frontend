@@ -6,7 +6,7 @@ import { StrapiFile } from '../../models/strapi/file.model';
 import { Projet } from '../../models/strapi/collectionType/projet.model';
 import { Article } from '../../models/strapi/collectionType/article.model';
 import { HttpClient } from '@angular/common/http';
-import { environmentDev } from '../../../../environments/environment.dev';
+import { environment } from '../../../../environments/environment';
 import { ErrorService } from '../error.service';
 import {Liens} from '../../models/strapi/collectionType/lien.model';
 
@@ -58,8 +58,8 @@ const initialState: AppState = {
   providedIn: 'root'
 })
 export class DataStoreService {
-  private apiUrl = environmentDev.strapiUrl + '/api';
-  private apiToken = environmentDev.strapiApiToken;
+  private apiUrl = environment.strapiUrl + '/api';
+  private apiToken = environment.strapiApiToken;
 
   // State management
   private stateSubject = new BehaviorSubject<AppState>(initialState);
@@ -345,9 +345,9 @@ export class DataStoreService {
     const file = files.find(f => f.name === filename);
     if (!file) return null;
 
-    if (file.ext === '.svg') return environmentDev.strapiUrl + file.url;
+    if (file.ext === '.svg') return environment.strapiUrl + file.url;
 
-    return environmentDev.strapiUrl + (file.formats.small.url || file.url);
+    return environment.strapiUrl + (file.formats.small.url || file.url);
   }
 
   // Get current state snapshot
