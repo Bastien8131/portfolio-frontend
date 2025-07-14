@@ -33,9 +33,7 @@ jobs:
       - name: Create production environment
         run: |
           mkdir -p src/environments
-          cat << 'EOF' > src/environments/environment.ts
-          ${{ secrets.ENVIRONMENT_PROD }}
-          EOF
+          echo '${{ secrets.ENVIRONMENT_PROD }}' > src/environments/environment.ts
 
       - name: Build Angular app
         run: npm run build --configuration=production
