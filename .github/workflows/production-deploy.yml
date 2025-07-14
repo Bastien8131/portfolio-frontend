@@ -31,7 +31,9 @@ jobs:
         run: npm clean-install
 
       - name: Create production environment
-        run: echo '${{ secrets.ENVIRONMENT_PROD }}' > src/environments/environment.prod.ts
+        run: |
+          mkdir -p src/environments
+          echo '${{ secrets.ENVIRONMENT_PROD }}' > src/environments/environment.prod.ts
 
       - name: Build Angular app
         run: npm run build --configuration=production
