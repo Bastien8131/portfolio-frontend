@@ -14,8 +14,9 @@
         <p>{{projet.description}}</p>
         <button
           *ngIf="projet.articles.data.length !== 0"
-          (click)="openArticle(projet.articles.data[0].id)"
-        >Curieux →</button>
+          (click)="openArticle(projet.articles.data[0].id)" >Curieux →</button>
+        <a *ngIf="projet.articles.data.length === 0 && projet.repositories.data.length !== 0"
+           [href]="projet.repositories.data[0].attributes.url" target="_blank" >Code source →</a>
       </div>
       <div
         class="bottom"
@@ -36,8 +37,9 @@
             <span *ngIf="projet.technologies.data.length > 3">+{{projet.technologies.data.length - 3}}</span>
           </div>
         </div>
-        <div class="linear" *ngIf="projet.articles.data.length !== 0">
-          <button (click)="openArticle(projet.articles.data[0].id)">Curieux →</button>
+        <div class="linear">
+          <button *ngIf="projet.articles.data.length !== 0" (click)="openArticle(projet.articles.data[0].id)">Curieux →</button>
+          <a *ngIf="projet.articles.data.length === 0 && projet.repositories.data.length !== 0" [href]="projet.repositories.data[0].attributes.url" target="_blank" >Code source →</a>
         </div>
       </div>
     </div>
