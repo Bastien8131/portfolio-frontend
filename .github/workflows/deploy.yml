@@ -27,7 +27,9 @@ jobs:
         run: npm ci
 
       - name: Creer dossier environments
-        run: mkdir -p src/environments
+        run: |
+          mkdir -p src/environments
+          echo "export const environment = { production: false, strapiUrl: '', strapiApiToken: '', emailJS: { serviceID: '', templateID: '', publicKey: '' } };" > src/environments/environment.ts
 
       - name: Build production
         run: npm run build:prod
