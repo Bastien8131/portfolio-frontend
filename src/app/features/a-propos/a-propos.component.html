@@ -6,7 +6,7 @@
   <markdown [data]="profile.descriptionAPropos"></markdown>
   <div *ngIf="cvUrl$ | async" id="cv-btn">
     <h3>Curriculum Vitae</h3>
-    <a [href]="apiUrl + profile.cv?.data?.attributes?.url" target="_blank" id="pastilles">
+    <a [href]="cvUrl$ | async" target="_blank" id="pastilles">
       <div id="cv"></div>
     </a>
 <!--    <div (click)="openPDF()" id="pastilles">-->

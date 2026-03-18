@@ -123,7 +123,7 @@ export class DataStoreService {
         tap(profile => this.updateState({ profile })),
         catchError(error => {
           this.updateState({ errors: { ...this.stateSubject.getValue().errors, profile: error } });
-          this.errorService.setError('Erreur lors du chargement du profil');
+          this.errorService.addError('DataStore', 'Erreur lors du chargement du profil');
           return of(null);
         }),
         finalize(() => {
@@ -145,7 +145,7 @@ export class DataStoreService {
         tap(files => this.updateState({ files })),
         catchError(error => {
           this.updateState({ errors: { ...this.stateSubject.getValue().errors, files: error } });
-          this.errorService.setError('Erreur lors du chargement des fichiers');
+          this.errorService.addError('DataStore', 'Erreur lors du chargement des fichiers');
           return of([]);
         }),
         finalize(() => {
@@ -167,7 +167,7 @@ export class DataStoreService {
         tap(projets => this.updateState({ projets })),
         catchError(error => {
           this.updateState({ errors: { ...this.stateSubject.getValue().errors, projets: error } });
-          this.errorService.setError('Erreur lors du chargement des projets');
+          this.errorService.addError('DataStore', 'Erreur lors du chargement des projets');
           return of([]);
         }),
         finalize(() => {
@@ -189,7 +189,7 @@ export class DataStoreService {
         tap(articles => this.updateState({ articles })),
         catchError(error => {
           this.updateState({ errors: { ...this.stateSubject.getValue().errors, articles: error } });
-          this.errorService.setError('Erreur lors du chargement des articles');
+          this.errorService.addError('DataStore', 'Erreur lors du chargement des articles');
           return of([]);
         }),
         finalize(() => {
@@ -211,7 +211,7 @@ export class DataStoreService {
         tap(liens => this.updateState({ liens })),
         catchError(error => {
           this.updateState({ errors: { ...this.stateSubject.getValue().errors, liens: error } });
-          this.errorService.setError('Erreur lors du chargement des liens');
+          this.errorService.addError('DataStore', 'Erreur lors du chargement des liens');
           return of([]);
         }),
         finalize(() => {
