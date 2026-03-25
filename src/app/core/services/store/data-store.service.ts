@@ -228,6 +228,6 @@ export class DataStoreService {
     if (!file) return null;
 
     if (file.ext === '.svg') return environment.strapiUrl + file.url;
-    return environment.strapiUrl + file.formats.thumbnail.url;
+    return environment.strapiUrl + file.formats.small.url;
   }
 }
